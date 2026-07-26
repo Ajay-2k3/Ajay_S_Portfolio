@@ -13,7 +13,7 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
   opts: RevealOpts = {},
 ) {
   const ref = useRef<T | null>(null);
-  const { y = 24, delay = 0, stagger = 0.08, selector, once = true } = opts;
+  const { y = 18, delay = 0, stagger = 0.05, selector, once = true } = opts;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -29,24 +29,28 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
       return;
     }
 
-    const ctx = gsap.context(() => {
-      gsap.set(targets, { opacity: 0, y });
-      gsap.to(targets, {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        delay,
-        stagger,
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-          toggleActions: once ? "play none none none" : "play none none reverse",
-        },
-      });
-    }, el);
+    try {
+      const ctx = gsap.context(() => {
+        gsap.set(targets, { opacity: 0, y });
+        gsap.to(targets, {
+          opacity: 1,
+          y: 0,
+          duration: 0.55,
+          ease: "power2.out",
+          delay,
+          stagger,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 92%",
+            toggleActions: once ? "play none none none" : "play none none reverse",
+          },
+        });
+      }, el);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    } catch {
+      gsap.set(targets, { opacity: 1, y: 0 });
+    }
   }, [y, delay, stagger, selector, once]);
 
   return ref;

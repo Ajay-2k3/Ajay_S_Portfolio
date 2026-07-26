@@ -68,13 +68,13 @@ export function Projects() {
             >
               <GlassCard interactive className="h-full flex flex-col justify-between">
                 <div>
-                  {/* Browser-frame mockup */}
+                  {/* Browser-frame mockup with Project Image */}
                   <div className="relative mb-6 overflow-hidden rounded-2xl border border-border bg-background aspect-[16/10] group-hover:border-lime/40 transition-colors">
-                    <div className="flex items-center justify-between border-b border-border bg-elevated/60 px-4 py-2.5">
+                    <div className="flex items-center justify-between border-b border-border/80 bg-elevated/80 px-4 py-2.5 z-20 relative backdrop-blur-md">
                       <div className="flex items-center gap-1.5">
-                        <span className="h-2.5 w-2.5 rounded-full bg-rose-500/70" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-amber-500/70" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/70" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
                         <span className="ml-2 font-mono text-[10px] text-muted-foreground">
                           aj.dev/{p.slug}
                         </span>
@@ -84,24 +84,20 @@ export function Projects() {
                       </span>
                     </div>
 
-                    <div className="relative h-full w-full p-6 flex flex-col justify-between">
-                      <div className="absolute inset-0 grid-noise opacity-40" />
-                      <div
-                        className={
-                          "absolute inset-x-6 top-6 h-32 rounded-xl bg-gradient-to-br transition-opacity duration-300 " +
-                          (i % 2 === 0
-                            ? "from-lime/20 via-lime/5 to-transparent"
-                            : "from-emerald-500/20 via-emerald-500/5 to-transparent")
-                        }
-                      />
-                      <div className="relative z-10">
-                        <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-lime/10 px-3 py-1 font-mono text-[11px] font-semibold text-lime">
-                          <Sparkles className="h-3 w-3" /> {p.metric}
-                        </div>
-                      </div>
-                      <div className="relative z-10 mt-auto">
-                        <div className="font-display text-2xl font-bold tracking-tight text-foreground">
-                          {p.title}
+                    <div className="relative h-full w-full overflow-hidden group">
+                      <div className="relative h-full w-full">
+                        {"image" in p && p.image ? (
+                          <img
+                            src={p.image}
+                            alt={p.title}
+                            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                          />
+                        ) : null}
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                        <div className="absolute bottom-4 left-4 z-10">
+                          <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-background/80 backdrop-blur-md px-3 py-1 font-mono text-[11px] font-semibold text-lime shadow-glow-sm">
+                            <Sparkles className="h-3 w-3" /> {p.metric}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -172,6 +168,16 @@ export function Projects() {
                     {activeProject.title}
                   </h2>
                 </div>
+
+                {"image" in activeProject && activeProject.image && (
+                  <div className="relative overflow-hidden rounded-2xl border border-border/80 aspect-[16/9] shadow-md">
+                    <img
+                      src={activeProject.image}
+                      alt={activeProject.title}
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </div>
+                )}
 
                 <div className="rounded-2xl border border-lime/20 bg-lime/5 p-4 flex items-center justify-between">
                   <span className="font-mono text-xs text-muted-foreground">Highlight Metric</span>

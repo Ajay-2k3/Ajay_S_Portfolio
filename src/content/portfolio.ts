@@ -127,6 +127,7 @@ export const projects = [
   {
     slug: "ai-stock-platform",
     title: "AI Stock Prediction & Monitoring Platform",
+    image: "/stock_predition.png",
     summary:
       "A real-time stock prediction and monitoring platform processing live JSON WebSocket data streams (1000+ points/sec) with a Python FastAPI ML inference microservice.",
     tags: ["React", "Node.js", "TypeScript", "Python", "FastAPI", "PostgreSQL", "Redis", "Socket.IO"],
@@ -153,6 +154,7 @@ export const projects = [
   {
     slug: "flowerly-ecommerce",
     title: "Flowerly — Multi-Tenant Floral E-Commerce",
+    image: "/flowerly.png",
     summary:
       "A modern, scalable multi-tenant e-commerce platform featuring 35+ pages, 4 user roles (Customer, Vendor, Admin, Delivery), Razorpay payment processing, and Socket.IO live order tracking.",
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "Supabase", "Razorpay", "Socket.IO"],
@@ -179,6 +181,7 @@ export const projects = [
   {
     slug: "ajay-dev-portfolio",
     title: "AJAY.DEV — Production Developer Portfolio",
+    image: "/protfolio.png",
     summary:
       "An award-grade, production-ready engineering showcase built with TanStack Start, React 19, Tailwind CSS v4, and GSAP/Framer Motion physics.",
     tags: ["React 19", "TanStack Start", "TypeScript", "Tailwind CSS", "GSAP", "Framer Motion"],

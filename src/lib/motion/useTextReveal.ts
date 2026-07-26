@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "./gsap";
+import { gsap } from "./gsap";
 
 /** Word-by-word reveal without paid SplitText. */
 export function useTextReveal<T extends HTMLElement = HTMLElement>() {
@@ -19,7 +19,7 @@ export function useTextReveal<T extends HTMLElement = HTMLElement>() {
       .map((w) =>
         /\s+/.test(w)
           ? w
-          : `<span class="inline-block will-change-transform" style="opacity:0;transform:translateY(0.6em)">${w}</span>`,
+          : `<span class="inline-block will-change-transform" style="opacity:0;transform:translateY(0.4em)">${w}</span>`,
       )
       .join("");
 
@@ -32,17 +32,24 @@ export function useTextReveal<T extends HTMLElement = HTMLElement>() {
       return;
     }
 
-    const ctx = gsap.context(() => {
-      gsap.to(spans, {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: 0.04,
-        scrollTrigger: { trigger: el, start: "top 85%", once: true },
+    try {
+      const ctx = gsap.context(() => {
+        gsap.to(spans, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          stagger: 0.025,
+          scrollTrigger: { trigger: el, start: "top 92%", once: true },
+        });
+      }, el);
+      return () => ctx.revert();
+    } catch {
+      spans.forEach((s) => {
+        s.style.opacity = "1";
+        s.style.transform = "none";
       });
-    }, el);
-    return () => ctx.revert();
+    }
   }, []);
 
   return ref;
