@@ -17,20 +17,28 @@ export function useCounter(target: number, duration = 1.6) {
     }
 
     const obj = { n: 0 };
-    const st = ScrollTrigger.create({
-      trigger: el,
-      start: "top 85%",
-      once: true,
-      onEnter: () => {
-        gsap.to(obj, {
-          n: target,
-          duration,
-          ease: "power2.out",
-          onUpdate: () => setValue(Math.round(obj.n)),
-        });
-      },
-    });
-    return () => st.kill();
+    try {
+      if (typeof ScrollTrigger === "undefined" || !ScrollTrigger.create) {
+        setValue(target);
+        return;
+      }
+      const st = ScrollTrigger.create({
+        trigger: el,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          gsap.to(obj, {
+            n: target,
+            duration,
+            ease: "power2.out",
+            onUpdate: () => setValue(Math.round(obj.n)),
+          });
+        },
+      });
+      return () => st.kill();
+    } catch {
+      setValue(target);
+    }
   }, [target, duration]);
 
   return { ref, value };
