@@ -30,7 +30,7 @@ function Metric({
 
 export function Metrics() {
   return (
-    <Section className="!py-20 md:!py-24">
+    <Section className="!py-10 md:!py-12">
       <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-4">
         {metrics.map((m) => (
           <Metric key={m.label} {...m} />

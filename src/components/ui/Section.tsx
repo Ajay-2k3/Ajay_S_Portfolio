@@ -19,7 +19,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn("relative py-24 md:py-32 lg:py-40", className)}
+      className={cn("relative py-14 md:py-18 lg:py-20", className)}
       {...rest}
     >
       {bare ? children : <Container size={containerSize}>{children}</Container>}

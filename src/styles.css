@@ -105,6 +105,12 @@
     text-rendering: optimizeLegibility;
   }
 
+  @media (min-width: 1024px) {
+    body, a, button, input, textarea, select, [role="button"], .cursor-pointer {
+      cursor: none !important;
+    }
+  }
+
   ::selection {
     background: var(--lime);
     color: var(--lime-foreground);
@@ -117,6 +123,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -143,4 +150,13 @@
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 48px 48px;
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

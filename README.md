@@ -1,29 +1,31 @@
-# Welcome to your Lovable project
+# AJ.DEV — Software Engineer Portfolio
 
-This project was built with [Lovable](https://lovable.dev).
+Engineering portfolio for **Ajay S**, Full-Stack Developer specializing in React, Next.js, Node.js, and PostgreSQL.
 
-## Build with Lovable
+## 🚀 Key Features
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- **Kinetic Role Rotator**: Auto-switching engineering profiles with smooth motion transitions.
+- **Interactive System Architecture Modal**: Full-screen interactive diagrams showcasing system telemetry, caching strategies, and database query optimizations.
+- **Custom Obsidian & Lime Cursor**: High-precision interactive mouse physics.
+- **Responsive Layout**: Full support across 320px mobile screens to 4K ultra-wide monitors.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## 🛠️ Stack & Technologies
 
-## Development
+- **Framework**: TanStack Start / Vite / React 19
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS, Custom Utility Layers
+- **Motion**: Framer Motion
+- **Icons**: Lucide React
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## 💻 Local Development
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
+# Install dependencies
+npm install
+
+# Start local dev server
 npm run dev
+
+# Run type check
+npx tsc --noEmit
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS

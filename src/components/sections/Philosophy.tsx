@@ -5,7 +5,7 @@ import { philosophy } from "@/content/portfolio";
 export function Philosophy() {
   const ref = useTextReveal<HTMLParagraphElement>();
   return (
-    <Section className="!py-40 md:!py-56">
+    <Section className="!py-12 md:!py-16">
       <div className="mx-auto max-w-4xl text-center">
         <div className="mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           <span className="h-px w-8 bg-lime" />

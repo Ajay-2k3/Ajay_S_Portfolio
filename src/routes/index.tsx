@@ -14,6 +14,7 @@ import { Achievements } from "@/components/sections/Achievements";
 import { Services } from "@/components/sections/Services";
 import { Blogs } from "@/components/sections/Blogs";
 import { Contact } from "@/components/sections/Contact";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const TITLE = "AJ.DEV — Software Engineer Portfolio";
 const DESCRIPTION =
@@ -60,6 +61,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
+      <CustomCursor />
       <Loader />
       <Nav />
       <a
@@ -72,12 +74,12 @@ function Home() {
         <Hero />
         <Metrics />
         <About />
-        <Experience />
         <Projects />
         <Architecture />
-        <Skills />
-        <Philosophy />
+        <Experience />
         <Achievements />
+        <Philosophy />
+        <Skills />
         <Services />
         <Blogs />
         <Contact />
