@@ -19,7 +19,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn("relative py-14 md:py-18 lg:py-20", className)}
+      className={cn("relative py-14 md:py-18 lg:py-20 overflow-hidden max-w-full w-full", className)}
       {...rest}
     >
       {bare ? children : <Container size={containerSize}>{children}</Container>}

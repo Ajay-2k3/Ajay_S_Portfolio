@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { KineticHeading, KineticParagraph } from "./KineticText";
 
 export function SectionHeader({
   eyebrow,
@@ -16,24 +18,40 @@ export function SectionHeader({
   return (
     <header
       className={cn(
-        "mb-16 md:mb-20 max-w-3xl",
+        "mb-12 md:mb-16 max-w-3xl",
         align === "center" && "mx-auto text-center",
-        className,
+        className
       )}
     >
       {eyebrow && (
-        <div className="mb-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+        <motion.div
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mb-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
+        >
           <span className="h-px w-8 bg-lime" />
-          {eyebrow}
-        </div>
+          <span className="text-lime font-semibold">{eyebrow}</span>
+        </motion.div>
       )}
-      <h2 className="text-balance text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.05]">
-        {title}
-      </h2>
+
+      <div>
+        <KineticHeading
+          as="h2"
+          className="text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] text-foreground"
+        >
+          {title}
+        </KineticHeading>
+      </div>
+
       {description && (
-        <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+        <KineticParagraph
+          delay={0.15}
+          className="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed"
+        >
           {description}
-        </p>
+        </KineticParagraph>
       )}
     </header>
   );

@@ -169,7 +169,7 @@ export function About() {
                   <div className="rounded-xl bg-background/80 border border-border/60 p-4 font-mono text-xs space-y-2 shadow-inner">
                     <div className="flex justify-between text-muted-foreground">
                       <span>education</span>
-                      <span className="text-lime">MCA Graduate (SRM Easwari)</span>
+                      <span className="text-lime">MCA Student (SRM Easwari)</span>
                     </div>
                     <div className="flex justify-between text-muted-foreground">
                       <span>internship</span>
@@ -177,7 +177,7 @@ export function About() {
                     </div>
                     <div className="flex justify-between text-muted-foreground">
                       <span>leetCode</span>
-                      <span className="text-lime">180+ Solved</span>
+                      <span className="text-lime">100+ DSA Solved</span>
                     </div>
                   </div>
                 </div>
@@ -266,28 +266,28 @@ export function About() {
               value={metrics[0].value}
               suffix={metrics[0].suffix}
               label={metrics[0].label}
-              detail="Dynamic Programming, Graphs & Trees"
+              detail={metrics[0].detail}
               index={0}
             />
             <AchievementCard
               value={metrics[1].value}
               suffix={metrics[1].suffix}
               label={metrics[1].label}
-              detail="750ms → 490ms response time at Bluewhiz"
+              detail={metrics[1].detail}
               index={1}
             />
             <AchievementCard
               value={metrics[2].value}
               suffix={metrics[2].suffix}
               label={metrics[2].label}
-              detail="Database query indexing & optimization"
+              detail={metrics[2].detail}
               index={2}
             />
             <AchievementCard
               value={metrics[3].value}
               suffix={metrics[3].suffix}
               label={metrics[3].label}
-              detail="Multi-tenant Flowerly platform pages"
+              detail={metrics[3].detail}
               index={3}
             />
           </div>

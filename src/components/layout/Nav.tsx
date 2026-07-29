@@ -67,7 +67,7 @@ export function Nav() {
           className={cn(
             "mx-auto flex max-w-6xl items-center justify-between px-4 md:px-6 transition-all duration-500",
             scrolled &&
-              "glass rounded-full py-2 pl-6 pr-2 shadow-card backdrop-saturate-150 border-lime/10"
+            "glass rounded-full py-2 pl-6 pr-2 shadow-card backdrop-saturate-150 border-lime/10"
           )}
         >
           {/* Brand Logo & Status */}

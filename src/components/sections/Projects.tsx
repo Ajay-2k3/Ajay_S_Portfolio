@@ -3,7 +3,6 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Chip } from "@/components/ui/Chip";
-import { useReveal } from "@/lib/motion/useReveal";
 import { projects } from "@/content/portfolio";
 import { ArrowUpRight, X, ExternalLink, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -15,8 +14,6 @@ export function Projects() {
   const [selectedTag, setSelectedTag] = useState<string>("All");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
-  const ref = useReveal<HTMLDivElement>({ selector: "[data-card]", stagger: 0.1 });
-
   // Extract all unique tags
   const allTags = ["All", ...Array.from(new Set(projects.flatMap((p) => p.tags)))];
 
@@ -26,21 +23,29 @@ export function Projects() {
       : projects.filter((p) => (p.tags as readonly string[]).includes(selectedTag));
 
   return (
-    <Section id="projects">
+    <Section id="projects" className="relative py-16 lg:py-24">
+      {/* Background Lighting Aura */}
+      <div
+        className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-lime/[0.03] blur-[140px]"
+        aria-hidden
+      />
+
       <SectionHeader
-        eyebrow="Selected Work"
-        title="Projects, not deliverables."
-        description="Case studies where architecture, motion, and performance decisions mattered."
+        eyebrow="Selected Engineering Work"
+        title="Featured projects & architecture."
+        description="Real-world case studies demonstrating full-stack engineering, microservices, real-time WebSocket streaming, and multi-tenant platforms."
       />
 
       {/* Interactive Tag Filter Bar */}
-      <div className="mb-8 flex flex-wrap items-center gap-2">
-        <span className="mr-2 font-mono text-xs text-muted-foreground">Filter:</span>
+      <div className="mb-10 flex flex-wrap items-center gap-2">
+        <span className="mr-2 font-mono text-xs text-muted-foreground uppercase tracking-wider">
+          Filter Stack:
+        </span>
         {allTags.map((tag) => (
           <button
             key={tag}
             onClick={() => setSelectedTag(tag)}
-            className={`rounded-full px-3.5 py-1.5 font-mono text-xs font-medium transition-all duration-200 ${
+            className={`rounded-full px-3.5 py-1.5 font-mono text-xs font-medium transition-all duration-300 ${
               selectedTag === tag
                 ? "bg-lime text-lime-foreground font-bold shadow-glow-sm scale-105"
                 : "bg-surface border border-border/60 text-muted-foreground hover:text-foreground hover:border-lime/30"
@@ -52,34 +57,35 @@ export function Projects() {
       </div>
 
       {/* Projects Grid */}
-      <div ref={ref} className="grid gap-6 md:grid-cols-2 md:gap-8">
+      <div className="grid gap-8 md:grid-cols-2">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((p, i) => (
             <motion.div
               key={p.slug}
-              data-card
               layout
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              exit={{ opacity: 0, scale: 0.94 }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => setActiveProject(p)}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
               className="group cursor-pointer"
             >
-              <GlassCard interactive className="h-full flex flex-col justify-between">
+              <GlassCard interactive className="h-full flex flex-col justify-between p-6 sm:p-8">
                 <div>
                   {/* Browser-frame mockup with Project Image */}
-                  <div className="relative mb-6 overflow-hidden rounded-2xl border border-border bg-background aspect-[16/10] group-hover:border-lime/40 transition-colors">
-                    <div className="flex items-center justify-between border-b border-border/80 bg-elevated/80 px-4 py-2.5 z-20 relative backdrop-blur-md">
+                  <div className="relative mb-6 overflow-hidden rounded-2xl border border-border bg-background aspect-[16/10] group-hover:border-lime/40 transition-colors shadow-md">
+                    <div className="flex items-center justify-between border-b border-border/80 bg-elevated/90 px-4 py-2.5 z-20 relative backdrop-blur-md">
                       <div className="flex items-center gap-1.5">
                         <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
                         <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
                         <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
                         <span className="ml-2 font-mono text-[10px] text-muted-foreground">
-                          aj.dev/{p.slug}
+                          ajay.dev/{p.slug}
                         </span>
                       </div>
-                      <span className="font-mono text-[10px] text-lime font-medium">
+                      <span className="font-mono text-[10px] text-lime font-semibold">
                         {p.year}
                       </span>
                     </div>
@@ -90,12 +96,12 @@ export function Projects() {
                           <img
                             src={p.image}
                             alt={p.title}
-                            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                           />
                         ) : null}
                         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                         <div className="absolute bottom-4 left-4 z-10">
-                          <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-background/80 backdrop-blur-md px-3 py-1 font-mono text-[11px] font-semibold text-lime shadow-glow-sm">
+                          <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-background/90 backdrop-blur-md px-3 py-1 font-mono text-[11px] font-semibold text-lime shadow-glow-sm">
                             <Sparkles className="h-3 w-3" /> {p.metric}
                           </div>
                         </div>
@@ -105,10 +111,10 @@ export function Projects() {
 
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="font-display text-2xl tracking-tight group-hover:text-lime transition-colors">
+                      <h3 className="font-display text-2xl font-bold tracking-tight group-hover:text-lime transition-colors">
                         {p.title}
                       </h3>
-                      <p className="mt-2 text-muted-foreground leading-relaxed text-sm">
+                      <p className="mt-2 text-muted-foreground leading-relaxed text-sm line-clamp-2">
                         {p.summary}
                       </p>
                     </div>

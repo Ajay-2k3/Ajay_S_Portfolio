@@ -20,36 +20,36 @@ import { toast } from "sonner";
 
 const roles = [
   {
-    title: "Full-Stack Developer",
-    subtitle: "Building scalable, real-time web applications using React, Next.js, Node.js & PostgreSQL.",
-    badge: "Full-Stack Precision",
-    skills: ["React.js", "Next.js", "Node.js", "TypeScript", "PostgreSQL"],
-    command: "npx ajay-dev inspect --fullstack",
-    snippet: `const developer = new FullStackDeveloper({\n  stack: ["React", "Next.js", "Node.js", "Postgres"],\n  leetCodeSolved: 180,\n  status: "Available for Hire"\n});`,
+    title: "Software Engineer",
+    subtitle: "Building scalable full-stack & backend apps using React, Next.js, Node.js, FastAPI, PostgreSQL & Redis.",
+    badge: "Full-Stack & Backend",
+    skills: ["React.js", "Next.js", "Node.js", "FastAPI", "PostgreSQL", "Redis"],
+    command: "npx ajay-dev inspect --software-engineer",
+    snippet: `const engineer = {\n  name: "Ajay S",\n  education: "MCA (SRM Easwari Engineering College)",\n  leetCodeSolved: "100+ DSA Problems",\n  status: "Available for Hire"\n};`,
   },
   {
-    title: "Backend Specialist",
-    subtitle: "Optimizing API response times by 35% & database query latency by 40% under concurrent load.",
-    badge: "Backend Performance",
-    skills: ["Node.js", "Express", "PostgreSQL", "FastAPI", "Redis", "JWT/RBAC"],
-    command: "npx ajay-dev optimize --api",
-    snippet: `export async function handleTelemetry(req: Request) {\n  const auth = await verifyJWT(req);\n  return db.query("SELECT * FROM telemetry_nodes WHERE id = $1", [auth.id]);\n}`,
+    title: "Backend Developer",
+    subtitle: "Experienced in Node.js, Express.js, PostgreSQL, Supabase, JWT authentication, RBAC & React Native integration.",
+    badge: "Backend & Databases",
+    skills: ["Node.js", "Express.js", "PostgreSQL", "Supabase", "JWT/RBAC", "React Native"],
+    command: "npx ajay-dev inspect --backend",
+    snippet: `export async function verifyAndAuthorize(req: Request) {\n  const user = await verifyJWT(req.headers.authorization);\n  return enforceRBAC(user.role, ["Admin", "Vendor", "Customer", "Delivery"]);\n}`,
   },
   {
-    title: "Real-Time Engineer",
-    subtitle: "Processing WebSocket streams (1000+ data points/sec) with sub-second UI update latency.",
-    badge: "Real-Time Systems",
-    skills: ["WebSocket", "Socket.IO", "Python FastAPI", "Redis", "Sub-second INP"],
-    command: "npx ajay-dev stream --socket",
-    snippet: `socket.on("stock_update", (data) => {\n  updateUIState(data);\n  triggerMLInference(data);\n});`,
+    title: "Real-Time AI Engineer",
+    subtitle: "Processed real-time WebSocket market data streams exceeding 1,000 data points/sec with Python FastAPI ML inference.",
+    badge: "Real-Time & AI",
+    skills: ["Python", "FastAPI", "Socket.IO", "Redis", "TensorFlow", "PyTorch"],
+    command: "npx ajay-dev stream --stock-ai",
+    snippet: `@app.websocket("/ws/stock-stream")\nasync function stockInferenceStream(websocket: WebSocket):\n    data = await websocket.receive_json()\n    prediction = await ml_model.predict(data)\n    await redis_cache.set(data.symbol, prediction)`,
   },
   {
     title: "E-Commerce Architect",
-    subtitle: "Deployed 35+ multi-tenant pages across 4 user roles with Razorpay payments & live order tracking.",
-    badge: "Multi-Tenant Craft",
-    skills: ["Next.js", "Prisma", "Supabase", "Razorpay", "Socket.IO"],
-    command: "npx ajay-dev deploy --flowerly",
-    snippet: `const checkout = await razorpay.orders.create({\n  amount: order.total,\n  currency: "INR"\n});`,
+    subtitle: "Built Flowerly platform with 35+ responsive pages across 4 user roles (Customer, Vendor, Admin, Delivery) & Razorpay.",
+    badge: "Multi-Tenant E-Commerce",
+    skills: ["Next.js", "Prisma", "Supabase", "Razorpay", "Socket.IO", "Tailwind CSS"],
+    command: "npx ajay-dev inspect --flowerly",
+    snippet: `const order = await prisma.order.create({\n  data: { tenantId, customerRole, vendorId, razorpayPaymentId, liveTrackingId }\n});`,
   },
 ] as const;
 
@@ -123,39 +123,39 @@ export function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2.5 sm:gap-3"
+              className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2 sm:gap-3"
             >
               <StatusPill label={brand.status} />
               <span className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-muted-foreground border border-border/40 rounded-full px-2.5 py-0.5 sm:px-3 sm:py-1 bg-elevated/40">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                {brand.location}
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                <span className="truncate max-w-[200px] sm:max-w-none">{brand.location}</span>
               </span>
             </motion.div>
 
-            {/* Greeting & Kinetic Role Switcher */}
+            {/* Greeting & Stable Kinetic Role Switcher */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.6 }}
-              className="space-y-1.5 sm:space-y-2"
+              className="space-y-1 sm:space-y-2"
             >
               <span className="font-mono text-xs sm:text-sm tracking-wide text-lime uppercase font-semibold flex items-center gap-2">
-                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Hi, I'm {brand.fullName}
+                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" /> Hi, I'm {brand.fullName}
               </span>
 
-              {/* Kinetic Role Rotator Header */}
-              <div className="relative min-h-[3rem] xs:min-h-[3.8rem] sm:min-h-[5.5rem] overflow-hidden py-1">
+              {/* Fixed Height Kinetic Role Rotator Header */}
+              <div className="relative h-[4.5rem] xs:h-[5rem] sm:h-[5.5rem] lg:h-[6.5rem] flex items-center overflow-hidden py-1">
                 <AnimatePresence mode="wait">
                   <motion.h1
                     key={currentRole.title}
-                    initial={{ y: 35, opacity: 0, filter: "blur(6px)" }}
+                    initial={{ y: 30, opacity: 0, filter: "blur(6px)" }}
                     animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                    exit={{ y: -35, opacity: 0, filter: "blur(6px)" }}
+                    exit={{ y: -30, opacity: 0, filter: "blur(6px)" }}
                     transition={{
-                      duration: 0.6,
+                      duration: 0.5,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="font-display text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1] sm:leading-[1.05]"
+                    className="font-display text-2.5xl xs:text-3.5xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.15] sm:leading-[1.08] w-full"
                   >
                     <span className="bg-gradient-to-r from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
                       {currentRole.title}
@@ -165,24 +165,24 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Dynamic Role Subtitle */}
-            <div className="mt-3 sm:mt-4 min-h-[3.5rem] sm:min-h-[4rem]">
+            {/* Stable Subtitle Container */}
+            <div className="mt-2 sm:mt-3 min-h-[4rem] sm:min-h-[4.5rem] flex items-start">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={currentRole.subtitle}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl"
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  className="text-xs sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl"
                 >
                   {currentRole.subtitle}
                 </motion.p>
               </AnimatePresence>
             </div>
 
-            {/* Role Switcher Controls & Badges (Scrollable & Responsive) */}
-            <div className="mt-5 sm:mt-6 flex items-center gap-1.5 sm:gap-2 max-w-full overflow-x-auto no-scrollbar pb-1">
+            {/* Responsive Role Switcher Controls */}
+            <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span className="text-[11px] sm:text-xs font-mono text-muted-foreground mr-1 shrink-0">
                 Switch Role:
               </span>
@@ -206,26 +206,21 @@ export function Hero() {
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
                 title={isPlaying ? "Pause auto-switch" : "Play auto-switch"}
-                className="shrink-0 ml-1 p-1 sm:p-1.5 rounded-full border border-border/60 text-muted-foreground hover:text-lime transition-colors"
+                className="shrink-0 p-1 sm:p-1.5 rounded-full border border-border/60 text-muted-foreground hover:text-lime transition-colors"
               >
                 {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
               </button>
             </div>
 
-            {/* Adaptive Skill Chips */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="mt-4 sm:mt-6 flex flex-wrap items-center gap-1.5 sm:gap-2"
-            >
+            {/* Stable Skill Chips Container */}
+            <div className="mt-4 sm:mt-6 min-h-[2.5rem] flex items-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentRole.badge}
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.35 }}
+                  transition={{ duration: 0.3 }}
                   className="flex flex-wrap gap-1.5 sm:gap-2 items-center"
                 >
                   {currentRole.skills.map((skill) => (
@@ -233,15 +228,15 @@ export function Hero() {
                       key={skill}
                       className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-mono rounded-md bg-elevated/70 border border-lime/20 text-foreground/90 flex items-center gap-1 sm:gap-1.5 shadow-sm"
                     >
-                      <span className="h-1 w-1 rounded-full bg-lime" />
+                      <span className="h-1 w-1 rounded-full bg-lime shrink-0" />
                       {skill}
                     </span>
                   ))}
                 </motion.div>
               </AnimatePresence>
-            </motion.div>
+            </div>
 
-            {/* Action Buttons with Responsive Flex & Magnetic Effect */}
+            {/* Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -323,16 +318,16 @@ export function Hero() {
                 {/* Terminal Quick Metrics */}
                 <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-2 border-t border-border/30 text-center">
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
-                    <div className="text-lime font-bold text-xs sm:text-sm">180+</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">LeetCode</div>
+                    <div className="text-lime font-bold text-xs sm:text-sm">100+</div>
+                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">LeetCode Solved</div>
                   </div>
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
-                    <div className="text-lime font-bold text-xs sm:text-sm">35%</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">API Speedup</div>
+                    <div className="text-lime font-bold text-xs sm:text-sm">1,000+</div>
+                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">Data Pts / sec</div>
                   </div>
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
-                    <div className="text-lime font-bold text-xs sm:text-sm">40%</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">DB Cut</div>
+                    <div className="text-lime font-bold text-xs sm:text-sm">35+</div>
+                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">Pages Shipped</div>
                   </div>
                 </div>
               </div>

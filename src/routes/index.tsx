@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Loader } from "@/components/layout/Loader";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -16,9 +18,9 @@ import { Blogs } from "@/components/sections/Blogs";
 import { Contact } from "@/components/sections/Contact";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 
-const TITLE = "AJ.DEV — Software Engineer Portfolio";
+const TITLE = "AJAY.DEV — Ajay S | Software Engineer & Full-Stack Developer";
 const DESCRIPTION =
-  "Ajay S. Software engineer building scalable React, TypeScript, and full-stack products with measurable performance and clean architecture.";
+  "Ajay S — Software Engineer and MCA student building scalable full-stack & backend applications using React, Next.js, Node.js, FastAPI, PostgreSQL, and Redis.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,11 +30,11 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://ajay-s-portfolio-5leb.vercel.app/" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://ajay-s-portfolio-5leb.vercel.app/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -40,16 +42,28 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Ajay S",
-          url: "/",
+          url: "https://ajay-s-portfolio-5leb.vercel.app/",
           jobTitle: "Software Engineer",
+          sameAs: [
+            "https://github.com/Ajay-2k3",
+            "https://www.linkedin.com/in/ajay-s-4b3383267/",
+            "https://leetcode.com/u/Ajay-2k3/",
+          ],
           knowsAbout: [
-            "React",
-            "TypeScript",
+            "React.js",
             "Next.js",
-            "TanStack",
             "Node.js",
+            "Express.js",
+            "FastAPI",
+            "Python",
+            "TypeScript",
             "PostgreSQL",
-            "Performance Engineering",
+            "Redis",
+            "Supabase",
+            "Socket.IO",
+            "JWT Authentication",
+            "RBAC",
+            "Data Structures & Algorithms",
           ],
         }),
       },
@@ -60,7 +74,8 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <>
+    <SmoothScrollProvider>
+      <ScrollProgress />
       <CustomCursor />
       <Loader />
       <Nav />
@@ -70,7 +85,7 @@ function Home() {
       >
         Skip to content
       </a>
-      <main>
+      <main className="overflow-hidden max-w-full w-full">
         <Hero />
         <Metrics />
         <About />
@@ -85,6 +100,6 @@ function Home() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </SmoothScrollProvider>
   );
 }
