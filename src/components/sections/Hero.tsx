@@ -21,35 +21,39 @@ import { toast } from "sonner";
 const roles = [
   {
     title: "Software Engineer",
+    shortLabel: "Software",
     subtitle: "Building scalable full-stack & backend apps using React, Next.js, Node.js, FastAPI, PostgreSQL & Redis.",
     badge: "Full-Stack & Backend",
     skills: ["React.js", "Next.js", "Node.js", "FastAPI", "PostgreSQL", "Redis"],
     command: "npx ajay-dev inspect --software-engineer",
-    snippet: `const engineer = {\n  name: "Ajay S",\n  education: "MCA (SRM Easwari Engineering College)",\n  leetCodeSolved: "100+ DSA Problems",\n  status: "Available for Hire"\n};`,
+    snippet: `const engineer = {\n  name: "Ajay S",\n  education: "MCA (SRM Easwari)",\n  status: "Available for Hire"\n};`,
   },
   {
     title: "Backend Developer",
+    shortLabel: "Backend",
     subtitle: "Experienced in Node.js, Express.js, PostgreSQL, Supabase, JWT authentication, RBAC & React Native integration.",
     badge: "Backend & Databases",
     skills: ["Node.js", "Express.js", "PostgreSQL", "Supabase", "JWT/RBAC", "React Native"],
     command: "npx ajay-dev inspect --backend",
-    snippet: `export async function verifyAndAuthorize(req: Request) {\n  const user = await verifyJWT(req.headers.authorization);\n  return enforceRBAC(user.role, ["Admin", "Vendor", "Customer", "Delivery"]);\n}`,
+    snippet: `export async function verifyAuth(req: Request) {\n  const user = await verifyJWT(req);\n  return enforceRBAC(user.role, ["Admin", "Vendor"]);\n}`,
   },
   {
     title: "Real-Time AI Engineer",
+    shortLabel: "Real-Time",
     subtitle: "Processed real-time WebSocket market data streams exceeding 1,000 data points/sec with Python FastAPI ML inference.",
     badge: "Real-Time & AI",
     skills: ["Python", "FastAPI", "Socket.IO", "Redis", "TensorFlow", "PyTorch"],
     command: "npx ajay-dev stream --stock-ai",
-    snippet: `@app.websocket("/ws/stock-stream")\nasync function stockInferenceStream(websocket: WebSocket):\n    data = await websocket.receive_json()\n    prediction = await ml_model.predict(data)\n    await redis_cache.set(data.symbol, prediction)`,
+    snippet: `@app.websocket("/ws/stock")\nasync function stream(ws: WebSocket):\n    data = await ws.receive_json()\n    await redis.set(data.symbol, predict(data))`,
   },
   {
     title: "E-Commerce Architect",
+    shortLabel: "E-Commerce",
     subtitle: "Built Flowerly platform with 35+ responsive pages across 4 user roles (Customer, Vendor, Admin, Delivery) & Razorpay.",
     badge: "Multi-Tenant E-Commerce",
     skills: ["Next.js", "Prisma", "Supabase", "Razorpay", "Socket.IO", "Tailwind CSS"],
     command: "npx ajay-dev inspect --flowerly",
-    snippet: `const order = await prisma.order.create({\n  data: { tenantId, customerRole, vendorId, razorpayPaymentId, liveTrackingId }\n});`,
+    snippet: `const order = await prisma.order.create({\n  data: { tenantId, role, razorpayId, trackingId }\n});`,
   },
 ] as const;
 
@@ -94,7 +98,7 @@ export function Hero() {
     <section
       id="top"
       onMouseMove={handleMouseMove}
-      className="relative flex flex-col justify-center overflow-hidden pt-20 sm:pt-28 pb-10 lg:pt-32 lg:pb-14"
+      className="relative flex flex-col justify-center overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14"
     >
       {/* Dynamic Cursor Spotlight Grid */}
       <div
@@ -110,12 +114,12 @@ export function Hero() {
       />
       {/* Ambient background blur */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[450px] sm:h-[550px] w-[600px] sm:w-[850px] rounded-full bg-lime/[0.05] blur-[120px]"
+        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[400px] sm:h-[550px] w-[500px] sm:w-[850px] rounded-full bg-lime/[0.05] blur-[120px]"
         aria-hidden
       />
 
       <Container className="relative z-10">
-        <div className="grid gap-8 sm:gap-12 lg:grid-cols-12 lg:items-center">
+        <div className="grid gap-6 sm:gap-10 lg:grid-cols-12 lg:items-center">
           {/* Main Kinetic Typography Content */}
           <div className="lg:col-span-7">
             {/* Availability Pill & Location */}
@@ -123,39 +127,39 @@ export function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="mb-4 sm:mb-6 flex flex-wrap items-center gap-2 sm:gap-3"
+              className="mb-3 sm:mb-5 flex flex-wrap items-center gap-2 sm:gap-3"
             >
               <StatusPill label={brand.status} />
               <span className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-muted-foreground border border-border/40 rounded-full px-2.5 py-0.5 sm:px-3 sm:py-1 bg-elevated/40">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
-                <span className="truncate max-w-[200px] sm:max-w-none">{brand.location}</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                {brand.location}
               </span>
             </motion.div>
 
-            {/* Greeting & Stable Kinetic Role Switcher */}
+            {/* Greeting & Kinetic Role Switcher */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.6 }}
-              className="space-y-1 sm:space-y-2"
+              className="space-y-1"
             >
               <span className="font-mono text-xs sm:text-sm tracking-wide text-lime uppercase font-semibold flex items-center gap-2">
-                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" /> Hi, I'm {brand.fullName}
+                <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Hi, I'm {brand.fullName}
               </span>
 
-              {/* Fixed Height Kinetic Role Rotator Header */}
-              <div className="relative h-[4.5rem] xs:h-[5rem] sm:h-[5.5rem] lg:h-[6.5rem] flex items-center overflow-hidden py-1">
+              {/* Fluid Kinetic Role Rotator Header (Adapts smoothly across all screen sizes) */}
+              <div className="relative min-h-[3.5rem] sm:min-h-[4.5rem] lg:min-h-[5.5rem] flex items-center py-1">
                 <AnimatePresence mode="wait">
                   <motion.h1
                     key={currentRole.title}
-                    initial={{ y: 30, opacity: 0, filter: "blur(6px)" }}
+                    initial={{ y: 25, opacity: 0, filter: "blur(6px)" }}
                     animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                    exit={{ y: -30, opacity: 0, filter: "blur(6px)" }}
+                    exit={{ y: -25, opacity: 0, filter: "blur(6px)" }}
                     transition={{
-                      duration: 0.5,
+                      duration: 0.45,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="font-display text-2.5xl xs:text-3.5xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.15] sm:leading-[1.08] w-full"
+                    className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground leading-tight"
                   >
                     <span className="bg-gradient-to-r from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
                       {currentRole.title}
@@ -165,23 +169,23 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Stable Subtitle Container */}
-            <div className="mt-2 sm:mt-3 min-h-[4rem] sm:min-h-[4.5rem] flex items-start">
+            {/* Dynamic Role Subtitle */}
+            <div className="mt-3 sm:mt-4 min-h-[3.5rem] sm:min-h-[4rem] flex items-start">
               <AnimatePresence mode="wait">
                 <motion.p
                   key={currentRole.subtitle}
-                  initial={{ opacity: 0, y: 6 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="text-xs sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl"
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-xl"
                 >
                   {currentRole.subtitle}
                 </motion.p>
               </AnimatePresence>
             </div>
 
-            {/* Responsive Role Switcher Controls */}
+            {/* Role Switcher Controls & Badges (Fully Responsive & Cleanly Wrapped on Mobile) */}
             <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span className="text-[11px] sm:text-xs font-mono text-muted-foreground mr-1 shrink-0">
                 Switch Role:
@@ -194,26 +198,31 @@ export function Hero() {
                     setIsPlaying(false);
                   }}
                   className={cn(
-                    "shrink-0 px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded-full border transition-all duration-300",
+                    "px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded-full border transition-all duration-300",
                     idx === roleIndex
                       ? "bg-lime text-lime-foreground border-lime font-bold shadow-glow-sm scale-105"
                       : "bg-surface/60 border-border/60 text-muted-foreground hover:text-foreground hover:border-border"
                   )}
                 >
-                  {r.title.split(" ")[0]}
+                  {r.shortLabel}
                 </button>
               ))}
               <button
                 onClick={() => setIsPlaying(!isPlaying)}
                 title={isPlaying ? "Pause auto-switch" : "Play auto-switch"}
-                className="shrink-0 p-1 sm:p-1.5 rounded-full border border-border/60 text-muted-foreground hover:text-lime transition-colors"
+                className="ml-1 p-1 sm:p-1.5 rounded-full border border-border/60 text-muted-foreground hover:text-lime transition-colors"
               >
                 {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
               </button>
             </div>
 
-            {/* Stable Skill Chips Container */}
-            <div className="mt-4 sm:mt-6 min-h-[2.5rem] flex items-center">
+            {/* Adaptive Skill Chips (Locked height container) */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="mt-3 sm:mt-5 min-h-[2.8rem] sm:min-h-[2.5rem] flex items-center"
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentRole.badge}
@@ -228,20 +237,20 @@ export function Hero() {
                       key={skill}
                       className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-mono rounded-md bg-elevated/70 border border-lime/20 text-foreground/90 flex items-center gap-1 sm:gap-1.5 shadow-sm"
                     >
-                      <span className="h-1 w-1 rounded-full bg-lime shrink-0" />
+                      <span className="h-1 w-1 rounded-full bg-lime" />
                       {skill}
                     </span>
                   ))}
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </motion.div>
 
             {/* Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.5 }}
-              className="mt-6 sm:mt-8 flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4"
+              className="mt-5 sm:mt-8 flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4"
             >
               <div ref={hireBtnRef} className="w-full xs:w-auto">
                 <CTAButton as="a" href="#contact" variant="lime" size="lg" className="w-full xs:w-auto justify-center group shadow-glow">
@@ -286,7 +295,7 @@ export function Hero() {
                 <div className="flex items-center justify-between rounded-lg bg-background/80 px-2.5 py-1.5 sm:px-3 sm:py-2 border border-border/50">
                   <div className="flex items-center gap-2 text-foreground/90 overflow-x-auto no-scrollbar text-[11px] sm:text-xs">
                     <span className="text-lime">$</span>
-                    <span>{currentRole.command}</span>
+                    <span className="truncate max-w-[220px] xs:max-w-none">{currentRole.command}</span>
                   </div>
                   <button
                     onClick={handleCopyCommand}
@@ -297,8 +306,8 @@ export function Hero() {
                   </button>
                 </div>
 
-                {/* Animated Code Snippet Box */}
-                <div className="rounded-lg bg-background/50 p-3 sm:p-4 border border-border/30 relative">
+                {/* Animated Code Snippet Box (Fixed Height Box) */}
+                <div className="rounded-lg bg-background/50 p-3 sm:p-4 border border-border/30 relative h-[6.5rem] flex items-center overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.pre
                       key={currentRole.title}
@@ -306,7 +315,7 @@ export function Hero() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.3 }}
-                      className="text-muted-foreground overflow-x-auto text-[10px] sm:text-[11px] leading-relaxed no-scrollbar"
+                      className="text-muted-foreground overflow-x-auto text-[10px] sm:text-[11px] leading-relaxed no-scrollbar w-full"
                     >
                       <code className="text-emerald-400 font-mono">
                         {currentRole.snippet}
@@ -319,15 +328,15 @@ export function Hero() {
                 <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-2 border-t border-border/30 text-center">
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
                     <div className="text-lime font-bold text-xs sm:text-sm">100+</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">LeetCode Solved</div>
+                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">LeetCode</div>
                   </div>
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
                     <div className="text-lime font-bold text-xs sm:text-sm">1,000+</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">Data Pts / sec</div>
+                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">Data Pts/s</div>
                   </div>
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
                     <div className="text-lime font-bold text-xs sm:text-sm">35+</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">Pages Shipped</div>
+                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">Pages</div>
                   </div>
                 </div>
               </div>
