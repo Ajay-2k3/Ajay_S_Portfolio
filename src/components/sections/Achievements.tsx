@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function Achievements() {
   return (
-    <Section id="certifications" className="bg-surface/40 relative py-16 lg:py-24">
+    <Section id="certifications" className="relative bg-surface py-16 lg:py-24">
       <SectionHeader
         eyebrow="Credentials & Certifications"
         title="Verified certifications & engineering credentials."
@@ -23,15 +23,12 @@ export function Achievements() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -6, transition: { duration: 0.25 } }}
-            className="glass relative overflow-hidden rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-border/60 hover:border-lime/40 transition-colors group bg-surface/80 backdrop-blur-md shadow-card"
+            className="glass group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border/60 bg-surface p-6 shadow-card transition-colors hover:border-lime/40 sm:p-8"
           >
-            {/* Background Glow */}
-            <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-lime/10 blur-2xl group-hover:bg-lime/20 transition-all duration-300" />
-
             <div>
               {/* Header Badge & Date */}
               <div className="flex items-center justify-between gap-2 mb-4">
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-lime/10 px-3 py-1 font-mono text-xs font-semibold text-lime shadow-glow-sm">
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-background px-3 py-1 font-mono text-xs font-semibold text-lime shadow-glow-sm">
                   <ShieldCheck className="h-3.5 w-3.5" />
                   <span>{cert.badge}</span>
                 </div>

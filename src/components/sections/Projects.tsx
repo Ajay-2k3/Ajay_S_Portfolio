@@ -24,12 +24,6 @@ export function Projects() {
 
   return (
     <Section id="projects" className="relative py-16 lg:py-24">
-      {/* Background Lighting Aura */}
-      <div
-        className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-lime/[0.03] blur-[140px]"
-        aria-hidden
-      />
-
       <SectionHeader
         eyebrow="Selected Engineering Work"
         title="Featured projects & architecture."
@@ -76,7 +70,7 @@ export function Projects() {
                 <div>
                   {/* Browser-frame mockup with Project Image */}
                   <div className="relative mb-6 overflow-hidden rounded-2xl border border-border bg-background aspect-[16/10] group-hover:border-lime/40 transition-colors shadow-md">
-                    <div className="flex items-center justify-between border-b border-border/80 bg-elevated/90 px-4 py-2.5 z-20 relative backdrop-blur-md">
+                    <div className="relative z-20 flex items-center justify-between border-b border-border/80 bg-elevated px-4 py-2.5">
                       <div className="flex items-center gap-1.5">
                         <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
                         <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
@@ -99,7 +93,7 @@ export function Projects() {
                         ) : null}
                         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                         <div className="absolute bottom-4 left-4 z-10">
-                          <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-background/90 backdrop-blur-md px-3 py-1 font-mono text-xs font-semibold text-lime shadow-glow-sm">
+                          <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-background px-3 py-1 font-mono text-xs font-semibold text-lime shadow-glow-sm">
                             <Sparkles className="h-3 w-3" /> {p.metric}
                           </div>
                         </div>
@@ -186,7 +180,7 @@ export function Projects() {
                   </div>
                 )}
 
-                <div className="rounded-2xl border border-lime/20 bg-lime/5 p-4 flex items-center justify-between">
+                <div className="flex items-center justify-between rounded-2xl border border-lime/20 bg-background p-4">
                   <span className="font-mono text-xs text-muted-foreground">Highlight Metric</span>
                   <span className="font-mono text-sm font-bold text-lime">
                     {activeProject.metric}
@@ -199,14 +193,14 @@ export function Projects() {
 
                 {"details" in activeProject && activeProject.details && (
                   <div className="space-y-4 text-xs sm:text-sm">
-                    <div className="rounded-xl bg-elevated/60 p-4 border border-border/60">
+                    <div className="rounded-xl border border-border/60 bg-elevated p-4">
                       <div className="font-mono text-xs font-semibold text-lime uppercase tracking-wider mb-1">
                         Problem
                       </div>
                       <p className="text-foreground/90">{activeProject.details.problem}</p>
                     </div>
 
-                    <div className="rounded-xl bg-elevated/60 p-4 border border-border/60">
+                    <div className="rounded-xl border border-border/60 bg-elevated p-4">
                       <div className="font-mono text-xs font-semibold text-lime uppercase tracking-wider mb-1">
                         Solution
                       </div>

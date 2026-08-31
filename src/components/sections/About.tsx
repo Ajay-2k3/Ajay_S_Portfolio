@@ -7,7 +7,6 @@ import { useCounter } from "@/lib/motion/useCounter";
 import { about, brand, philosophy, metrics } from "@/content/portfolio";
 import {
   Sparkles,
-  Quote,
   CheckCircle2,
   MapPin,
   Target,
@@ -40,7 +39,7 @@ function AchievementCard({
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ y: -4, transition: { duration: 0.2 } }}
-      className="group relative rounded-2xl border border-border/60 bg-surface/80 p-5 shadow-card backdrop-blur-md hover:border-lime/40 transition-colors"
+      className="group relative rounded-2xl border border-border/60 bg-surface p-5 shadow-card transition-colors hover:border-lime/40"
     >
       <div className="flex items-baseline gap-1 font-display text-3xl font-bold tracking-tight text-foreground group-hover:text-lime transition-colors">
         <span ref={ref}>{currentCount}</span>
@@ -91,12 +90,6 @@ export function About() {
 
   return (
     <Section id="about" className="relative py-12 lg:py-16">
-      {/* Background Lighting Effects */}
-      <div
-        className="pointer-events-none absolute top-1/3 left-0 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-lime/[0.04] blur-[100px]"
-        aria-hidden
-      />
-
       <SectionHeader eyebrow="About & Background" title={about.heading} />
 
       <div ref={revealRef} className="mt-12 space-y-16">
@@ -113,7 +106,7 @@ export function About() {
                   key={i}
                   className={
                     i === 0
-                      ? "border-l-2 border-lime/60 pl-4 py-1 bg-lime/[0.02] rounded-r-lg font-medium text-foreground"
+                      ? "rounded-r-lg border-l-2 border-lime/60 bg-surface py-1 pl-4 font-medium text-foreground"
                       : ""
                   }
                 >
@@ -124,8 +117,8 @@ export function About() {
 
             {/* Key Specs */}
             <div data-reveal className="grid grid-cols-2 gap-4 pt-2">
-              <div className="rounded-xl border border-border/60 bg-surface/60 p-4 backdrop-blur-sm flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-lime/10 text-lime mt-0.5">
+              <div className="flex items-start gap-3 rounded-xl border border-border/60 bg-surface p-4">
+                <div className="mt-0.5 rounded-lg bg-background p-2 text-lime">
                   <MapPin className="h-4 w-4" />
                 </div>
                 <div>
@@ -135,8 +128,8 @@ export function About() {
                   <div className="mt-0.5 font-medium text-foreground text-sm">{brand.location}</div>
                 </div>
               </div>
-              <div className="rounded-xl border border-border/60 bg-surface/60 p-4 backdrop-blur-sm flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-lime/10 text-lime mt-0.5">
+              <div className="flex items-start gap-3 rounded-xl border border-border/60 bg-surface p-4">
+                <div className="mt-0.5 rounded-lg bg-background p-2 text-lime">
                   <Target className="h-4 w-4" />
                 </div>
                 <div>
@@ -153,14 +146,9 @@ export function About() {
           <div data-reveal className="lg:col-span-5">
             <TiltCard>
               <div className="glass relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-lime/20 shadow-card p-8 flex flex-col justify-between group">
-                {/* Ambient Radial Gradient Aura */}
-                <div className="absolute inset-0 bg-gradient-to-br from-elevated via-surface to-background opacity-90" />
-                <div className="absolute inset-0 grid-noise opacity-30" />
-                <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-lime/25 blur-3xl transition-transform duration-500 group-hover:scale-125" />
-
                 {/* Top Badge */}
                 <div className="relative z-10 flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-3 py-1 font-mono text-xs text-lime backdrop-blur-md">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-background px-3 py-1 font-mono text-xs text-lime">
                     <Sparkles className="h-3.5 w-3.5" />
                     <span>Full-Stack Engineer</span>
                   </div>
@@ -173,7 +161,7 @@ export function About() {
                     <Terminal className="h-4 w-4 text-lime" />
                     <span>ajay_profile_spec.ts</span>
                   </div>
-                  <div className="rounded-xl bg-background/80 border border-border/60 p-4 font-mono text-xs space-y-2 shadow-inner">
+                  <div className="space-y-2 rounded-xl border border-border/60 bg-background p-4 font-mono text-xs shadow-inner">
                     <div className="flex justify-between text-muted-foreground">
                       <span>education</span>
                       <span className="text-lime">MCA Student (SRM Easwari)</span>
@@ -199,7 +187,7 @@ export function About() {
                       {brand.fullName}
                     </div>
                   </div>
-                  <div className="inline-flex items-center gap-2 rounded-xl border border-lime/30 bg-background/90 px-3 py-1.5 font-mono text-xs">
+                  <div className="inline-flex items-center gap-2 rounded-xl border border-lime/30 bg-background px-3 py-1.5 font-mono text-xs">
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-75" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-lime" />
@@ -237,7 +225,7 @@ export function About() {
                 </div>
                 <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between">
                   <span className="font-mono text-xs text-muted-foreground">Academic Merit</span>
-                  <span className="font-mono text-xs font-bold text-lime bg-lime/10 px-2.5 py-1 rounded-full border border-lime/20">
+                  <span className="rounded-full border border-lime/20 bg-background px-2.5 py-1 font-mono text-xs font-bold text-lime">
                     {edu.score}
                   </span>
                 </div>
@@ -251,11 +239,8 @@ export function About() {
           <motion.div
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.2 }}
-            className="relative overflow-hidden rounded-2xl border border-lime/30 bg-gradient-to-r from-surface via-elevated to-surface p-8 shadow-card"
+            className="relative overflow-hidden rounded-2xl border border-lime/30 bg-surface p-8 shadow-card"
           >
-            <div className="absolute top-0 right-0 p-8 opacity-10 text-lime pointer-events-none">
-              <Quote className="h-24 w-24" />
-            </div>
             <div className="relative z-10 max-w-3xl space-y-3">
               <div className="font-mono text-xs font-semibold uppercase tracking-widest text-lime flex items-center gap-2">
                 <Zap className="h-3.5 w-3.5" /> Engineering Principle

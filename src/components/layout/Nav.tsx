@@ -66,8 +66,7 @@ export function Nav() {
         <div
           className={cn(
             "mx-auto flex max-w-6xl items-center justify-between px-4 md:px-6 transition-all duration-500",
-            scrolled &&
-              "glass rounded-full py-2 pl-6 pr-2 shadow-card backdrop-saturate-150 border-lime/10",
+            scrolled && "glass rounded-full border-lime/10 py-2 pr-2 pl-6 shadow-card",
           )}
         >
           {/* Brand Logo & Status */}
@@ -95,15 +94,13 @@ export function Nav() {
 
           {/* Desktop Navigation */}
           <nav
-            className="hidden items-center gap-1 md:flex rounded-full bg-elevated/40 p-1 border border-border/40 backdrop-blur-md"
+            className="hidden items-center gap-1 rounded-full border border-border/40 bg-elevated p-1 md:flex"
             aria-label="Primary"
             onMouseLeave={() => setHoveredSection(null)}
           >
             {nav.map((item) => {
               const isActive = activeSection === item.href;
               const isHovered = hoveredSection === item.href;
-              const isHighlighted = isHovered || (!hoveredSection && isActive);
-
               return (
                 <a
                   key={item.href}
@@ -111,19 +108,12 @@ export function Nav() {
                   onMouseEnter={() => setHoveredSection(item.href)}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "relative px-4 py-1.5 text-sm font-medium transition-colors duration-200 rounded-full",
+                    "relative rounded-full border px-4 py-1.5 text-sm font-medium transition-colors duration-200",
                     isActive || isHovered
-                      ? "text-foreground font-semibold"
-                      : "text-muted-foreground hover:text-foreground",
+                      ? "border-lime/30 bg-background text-foreground font-semibold shadow-glow"
+                      : "border-transparent bg-elevated text-muted-foreground hover:text-foreground",
                   )}
                 >
-                  {isHighlighted && (
-                    <motion.span
-                      layoutId="active-nav-pill"
-                      className="absolute inset-0 -z-10 rounded-full bg-lime/15 border border-lime/30 shadow-glow"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
                   {item.label}
                 </a>
               );
@@ -165,7 +155,7 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[60] flex flex-col justify-between bg-background/95 backdrop-blur-2xl md:hidden px-6 py-6"
+            className="fixed inset-0 z-[60] flex flex-col justify-between bg-background px-6 py-6 md:hidden"
           >
             <div>
               {/* Drawer Header */}

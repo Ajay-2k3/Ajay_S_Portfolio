@@ -23,11 +23,8 @@ export function Services() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -6, transition: { duration: 0.25 } }}
-            className="glass relative overflow-hidden rounded-3xl p-8 border border-border/60 hover:border-lime/40 transition-colors bg-surface/80 backdrop-blur-md flex flex-col justify-between group shadow-card"
+            className="glass group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border/60 bg-surface p-8 shadow-card transition-colors hover:border-lime/40"
           >
-            {/* Background Glow */}
-            <div className="pointer-events-none absolute -top-16 -right-16 h-36 w-36 rounded-full bg-lime/10 blur-2xl group-hover:bg-lime/20 transition-all duration-500" />
-
             <div>
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs uppercase tracking-widest text-lime font-bold">
@@ -39,9 +36,7 @@ export function Services() {
               <h3 className="mt-6 font-display text-2xl font-bold tracking-tight text-foreground group-hover:text-lime transition-colors">
                 {s.title}
               </h3>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                {s.detail}
-              </p>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.detail}</p>
             </div>
 
             <div className="mt-8 pt-4 border-t border-border/40">

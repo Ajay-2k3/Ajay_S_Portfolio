@@ -22,12 +22,13 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 const variants: Record<Variant, string> = {
   lime: "bg-lime text-lime-foreground hover:shadow-glow hover:brightness-110",
   primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-  ghost: "border border-border bg-transparent text-foreground hover:bg-elevated",
-  outline: "border border-border text-foreground hover:bg-elevated hover:border-white/20",
+  ghost: "border border-border bg-background text-foreground hover:bg-elevated",
+  outline:
+    "border border-border bg-background text-foreground hover:bg-elevated hover:border-white/20",
   chip: "border border-border/60 bg-surface text-muted-foreground hover:border-lime/30 hover:text-foreground aria-pressed:border-lime aria-pressed:bg-lime aria-pressed:text-lime-foreground",
   icon: "border border-border bg-elevated text-muted-foreground hover:border-lime/40 hover:text-lime",
   panel:
-    "rounded-2xl border border-border/60 bg-elevated/40 text-left hover:border-lime/30 hover:bg-elevated/80 aria-pressed:border-lime/40 aria-pressed:bg-lime/10",
+    "rounded-2xl border border-border/60 bg-elevated text-left hover:border-lime/30 aria-pressed:border-lime/40 aria-pressed:bg-surface",
 };
 
 const sizes: Record<Size, string> = {

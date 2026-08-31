@@ -64,7 +64,6 @@ export function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [copied, setCopied] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const hireBtnRef = useMagnetic<HTMLDivElement>(0.35);
   const workBtnRef = useMagnetic<HTMLDivElement>(0.35);
@@ -79,15 +78,6 @@ export function Hero() {
     return () => clearInterval(interval);
   }, [isPlaying]);
 
-  // Mouse tracking spotlight
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
   const handleCopyCommand = () => {
     navigator.clipboard.writeText(currentRole.command);
     setCopied(true);
@@ -100,27 +90,8 @@ export function Hero() {
   return (
     <section
       id="top"
-      onMouseMove={handleMouseMove}
       className="relative flex flex-col justify-center overflow-hidden pt-28 sm:pt-32 lg:pt-36 pb-10 sm:pb-14"
     >
-      {/* Dynamic Cursor Spotlight Grid */}
-      <div
-        className="pointer-events-none absolute inset-0 grid-noise opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 transition-opacity duration-300 hidden sm:block"
-        style={{
-          background: `radial-gradient(650px circle at ${mousePos.x}px ${mousePos.y}px, rgba(203, 255, 1, 0.07), transparent 80%)`,
-        }}
-        aria-hidden
-      />
-      {/* Ambient background blur */}
-      <div
-        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[400px] sm:h-[550px] w-[500px] sm:w-[850px] rounded-full bg-lime/[0.05] blur-[120px]"
-        aria-hidden
-      />
-
       <Container className="relative z-10">
         <div className="grid gap-6 sm:gap-10 lg:grid-cols-12 lg:items-center">
           {/* Main Kinetic Typography Content */}
@@ -133,7 +104,7 @@ export function Hero() {
               className="mb-3 sm:mb-5 flex flex-wrap items-center gap-2 sm:gap-3"
             >
               <StatusPill label={brand.status} />
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-elevated/40 px-2.5 py-0.5 font-mono text-xs text-muted-foreground sm:px-3 sm:py-1">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-elevated px-2.5 py-0.5 font-mono text-xs text-muted-foreground sm:px-3 sm:py-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 {brand.location}
               </span>
@@ -164,9 +135,7 @@ export function Hero() {
                     }}
                     className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground leading-tight"
                   >
-                    <span className="bg-gradient-to-r from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
-                      {currentRole.title}
-                    </span>
+                    <span className="text-foreground">{currentRole.title}</span>
                   </motion.h1>
                 </AnimatePresence>
               </div>
@@ -246,7 +215,7 @@ export function Hero() {
                   {currentRole.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="flex items-center gap-1 rounded-md border border-lime/20 bg-elevated/70 px-2 py-0.5 font-mono text-xs text-foreground/90 shadow-sm sm:gap-1.5 sm:px-2.5 sm:py-1"
+                      className="flex items-center gap-1 rounded-md border border-lime/20 bg-elevated px-2 py-0.5 font-mono text-xs text-foreground shadow-sm sm:gap-1.5 sm:px-2.5 sm:py-1"
                     >
                       <span className="h-1 w-1 rounded-full bg-lime" />
                       {skill}
@@ -295,10 +264,10 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.7 }}
-              className="rounded-2xl border border-border/80 bg-surface/90 shadow-card backdrop-blur-xl overflow-hidden group hover:border-lime/40 transition-colors"
+              className="group overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-card transition-colors hover:border-lime/40"
             >
               {/* Terminal Window Bar */}
-              <div className="flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 bg-elevated/80 border-b border-border/60">
+              <div className="flex items-center justify-between border-b border-border/60 bg-elevated px-3.5 py-2.5 sm:px-4 sm:py-3">
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-rose-500/80" />
                   <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-amber-500/80" />
@@ -308,7 +277,7 @@ export function Hero() {
                   <Terminal className="h-3.5 w-3.5 text-lime" />
                   <span>ajay.config.ts</span>
                 </div>
-                <span className="max-w-[110px] truncate rounded border border-lime/20 bg-lime/10 px-1.5 py-0.5 font-mono text-xs text-lime sm:max-w-none sm:px-2">
+                <span className="max-w-[110px] truncate rounded border border-lime/20 bg-background px-1.5 py-0.5 font-mono text-xs text-lime sm:max-w-none sm:px-2">
                   {currentRole.badge}
                 </span>
               </div>
@@ -316,7 +285,7 @@ export function Hero() {
               {/* Terminal Content */}
               <div className="p-4 sm:p-5 font-mono text-xs space-y-3 sm:space-y-4">
                 {/* Interactive CLI Command Copy Row */}
-                <div className="flex items-center justify-between rounded-lg bg-background/80 px-2.5 py-1.5 sm:px-3 sm:py-2 border border-border/50">
+                <div className="flex items-center justify-between rounded-lg border border-border/50 bg-background px-2.5 py-1.5 sm:px-3 sm:py-2">
                   <div className="no-scrollbar flex items-center gap-2 overflow-x-auto text-xs text-foreground/90">
                     <span className="text-lime">$</span>
                     <span className="truncate max-w-[220px] xs:max-w-none">
@@ -340,7 +309,7 @@ export function Hero() {
                 </div>
 
                 {/* Animated Code Snippet Box (Fixed Height Box) */}
-                <div className="rounded-lg bg-background/50 p-3 sm:p-4 border border-border/30 relative h-[6.5rem] flex items-center overflow-hidden">
+                <div className="relative flex h-[6.5rem] items-center overflow-hidden rounded-lg border border-border/30 bg-background p-3 sm:p-4">
                   <AnimatePresence mode="wait">
                     <motion.pre
                       key={currentRole.title}
@@ -357,15 +326,15 @@ export function Hero() {
 
                 {/* Terminal Quick Metrics */}
                 <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-2 border-t border-border/30 text-center">
-                  <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
+                  <div className="rounded bg-elevated p-1.5 sm:p-2">
                     <div className="text-lime font-bold text-xs sm:text-sm">100+</div>
                     <div className="text-xs text-muted-foreground">LeetCode</div>
                   </div>
-                  <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
+                  <div className="rounded bg-elevated p-1.5 sm:p-2">
                     <div className="text-lime font-bold text-xs sm:text-sm">1,000+</div>
                     <div className="text-xs text-muted-foreground">Data Pts/s</div>
                   </div>
-                  <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
+                  <div className="rounded bg-elevated p-1.5 sm:p-2">
                     <div className="text-lime font-bold text-xs sm:text-sm">35+</div>
                     <div className="text-xs text-muted-foreground">Pages</div>
                   </div>
