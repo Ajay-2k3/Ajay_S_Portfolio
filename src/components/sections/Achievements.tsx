@@ -31,7 +31,7 @@ export function Achievements() {
             <div>
               {/* Header Badge & Date */}
               <div className="flex items-center justify-between gap-2 mb-4">
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-lime/10 px-3 py-1 font-mono text-[11px] font-semibold text-lime shadow-glow-sm">
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-lime/10 px-3 py-1 font-mono text-xs font-semibold text-lime shadow-glow-sm">
                   <ShieldCheck className="h-3.5 w-3.5" />
                   <span>{cert.badge}</span>
                 </div>
@@ -49,9 +49,7 @@ export function Achievements() {
               </div>
 
               {/* Summary */}
-              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-                {cert.summary}
-              </p>
+              <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{cert.summary}</p>
             </div>
 
             {/* Tech Tags */}

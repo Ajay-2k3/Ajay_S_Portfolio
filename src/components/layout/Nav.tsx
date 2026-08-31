@@ -48,7 +48,7 @@ export function Nav() {
           }
         });
       },
-      { rootMargin: "-20% 0px -50% 0px" }
+      { rootMargin: "-20% 0px -50% 0px" },
     );
 
     sectionElements.forEach((el) => observer.observe(el));
@@ -60,14 +60,14 @@ export function Nav() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-          scrolled ? "py-3" : "py-6"
+          scrolled ? "py-3" : "py-6",
         )}
       >
         <div
           className={cn(
             "mx-auto flex max-w-6xl items-center justify-between px-4 md:px-6 transition-all duration-500",
             scrolled &&
-            "glass rounded-full py-2 pl-6 pr-2 shadow-card backdrop-saturate-150 border-lime/10"
+              "glass rounded-full py-2 pl-6 pr-2 shadow-card backdrop-saturate-150 border-lime/10",
           )}
         >
           {/* Brand Logo & Status */}
@@ -87,7 +87,7 @@ export function Nav() {
               <span className="font-semibold leading-none text-foreground group-hover:text-lime transition-colors">
                 {brand.name}
               </span>
-              <span className="text-[10px] leading-tight text-muted-foreground hidden sm:inline-block">
+              <span className="hidden text-xs leading-tight text-muted-foreground sm:inline-block">
                 {brand.role}
               </span>
             </div>
@@ -114,7 +114,7 @@ export function Nav() {
                     "relative px-4 py-1.5 text-sm font-medium transition-colors duration-200 rounded-full",
                     isActive || isHovered
                       ? "text-foreground font-semibold"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {isHighlighted && (
@@ -141,15 +141,18 @@ export function Nav() {
           </div>
 
           {/* Mobile Menu Toggle Button */}
-          <button
-            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-elevated transition-colors hover:border-lime/40"
+          <CTAButton
+            type="button"
+            variant="icon"
+            size="icon"
+            className="md:hidden"
             onClick={() => setOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={open}
             aria-controls="mobile-nav-menu"
           >
-            <Menu className="h-4 w-4" />
-          </button>
+            <Menu aria-hidden="true" className="h-4 w-4" />
+          </CTAButton>
         </div>
       </header>
 
@@ -173,20 +176,19 @@ export function Nav() {
                   </span>
                   <span className="font-mono text-sm font-semibold">{brand.name}</span>
                 </div>
-                <button
+                <CTAButton
+                  type="button"
+                  variant="icon"
+                  size="icon"
                   onClick={() => setOpen(false)}
                   aria-label="Close navigation menu"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors hover:border-lime/40"
                 >
-                  <X className="h-4 w-4" />
-                </button>
+                  <X aria-hidden="true" className="h-4 w-4" />
+                </CTAButton>
               </div>
 
               {/* Drawer Nav Links */}
-              <nav
-                className="flex flex-col items-start gap-4 pt-8"
-                aria-label="Mobile Navigation"
-              >
+              <nav className="flex flex-col items-start gap-4 pt-8" aria-label="Mobile Navigation">
                 {nav.map((item, i) => {
                   const isActive = activeSection === item.href;
                   return (
@@ -200,14 +202,18 @@ export function Nav() {
                       aria-current={isActive ? "page" : undefined}
                       className={cn(
                         "group flex items-center justify-between w-full text-3xl font-medium tracking-tight transition-colors",
-                        isActive ? "text-lime font-semibold" : "text-foreground hover:text-lime"
+                        isActive ? "text-lime font-semibold" : "text-foreground hover:text-lime",
                       )}
                     >
                       <span>{item.label}</span>
-                      <ArrowUpRight className={cn(
-                        "h-6 w-6 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1",
-                        isActive ? "text-lime opacity-100" : "text-muted-foreground opacity-40 group-hover:opacity-100"
-                      )} />
+                      <ArrowUpRight
+                        className={cn(
+                          "h-6 w-6 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1",
+                          isActive
+                            ? "text-lime opacity-100"
+                            : "text-muted-foreground opacity-40 group-hover:opacity-100",
+                        )}
+                      />
                     </motion.a>
                   );
                 })}
@@ -220,10 +226,21 @@ export function Nav() {
                 <StatusPill label={brand.status} />
               </div>
               <div className="flex gap-3">
-                <CTAButton as="a" href={brand.resumeUrl} variant="outline" className="flex-1 justify-center">
+                <CTAButton
+                  as="a"
+                  href={brand.resumeUrl}
+                  variant="outline"
+                  className="flex-1 justify-center"
+                >
                   Resume
                 </CTAButton>
-                <CTAButton as="a" href="#contact" variant="lime" className="flex-1 justify-center" onClick={() => setOpen(false)}>
+                <CTAButton
+                  as="a"
+                  href="#contact"
+                  variant="lime"
+                  className="flex-1 justify-center"
+                  onClick={() => setOpen(false)}
+                >
                   Hire Me
                 </CTAButton>
               </div>
@@ -234,4 +251,3 @@ export function Nav() {
     </>
   );
 }
-

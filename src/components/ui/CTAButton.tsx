@@ -1,8 +1,13 @@
-import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import {
+  forwardRef,
+  type AnchorHTMLAttributes,
+  type ButtonHTMLAttributes,
+  type ReactNode,
+} from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "lime" | "primary" | "ghost" | "outline";
-type Size = "sm" | "md" | "lg";
+type Variant = "lime" | "primary" | "ghost" | "outline" | "chip" | "icon" | "panel";
+type Size = "sm" | "md" | "lg" | "icon" | "panel";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
@@ -10,19 +15,27 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   as?: "button" | "a";
   href?: string;
+  target?: AnchorHTMLAttributes<HTMLAnchorElement>["target"];
+  rel?: AnchorHTMLAttributes<HTMLAnchorElement>["rel"];
 }
 
 const variants: Record<Variant, string> = {
   lime: "bg-lime text-lime-foreground hover:shadow-glow hover:brightness-110",
   primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-  ghost: "bg-transparent text-foreground hover:bg-elevated",
+  ghost: "border border-border bg-transparent text-foreground hover:bg-elevated",
   outline: "border border-border text-foreground hover:bg-elevated hover:border-white/20",
+  chip: "border border-border/60 bg-surface text-muted-foreground hover:border-lime/30 hover:text-foreground aria-pressed:border-lime aria-pressed:bg-lime aria-pressed:text-lime-foreground",
+  icon: "border border-border bg-elevated text-muted-foreground hover:border-lime/40 hover:text-lime",
+  panel:
+    "rounded-2xl border border-border/60 bg-elevated/40 text-left hover:border-lime/30 hover:bg-elevated/80 aria-pressed:border-lime/40 aria-pressed:bg-lime/10",
 };
 
 const sizes: Record<Size, string> = {
   sm: "h-9 px-4 text-sm",
   md: "h-11 px-6 text-sm",
   lg: "h-14 px-8 text-base",
+  icon: "h-11 w-11 p-0 text-sm",
+  panel: "h-auto w-full p-5 text-base",
 };
 
 export const CTAButton = forwardRef<HTMLButtonElement, Props>(function CTAButton(
@@ -36,14 +49,15 @@ export const CTAButton = forwardRef<HTMLButtonElement, Props>(function CTAButton
     className,
   );
   if (as === "a") {
+    const anchorProps = rest as AnchorHTMLAttributes<HTMLAnchorElement>;
     return (
-      <a href={href} className={cls}>
+      <a href={href} className={cls} {...anchorProps}>
         {children}
       </a>
     );
   }
   return (
-    <button ref={ref} className={cls} {...rest}>
+    <button ref={ref} type="button" className={cls} {...rest}>
       {children}
     </button>
   );

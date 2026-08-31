@@ -47,7 +47,7 @@ function AchievementCard({
         <span className="text-lime">{suffix}</span>
       </div>
       <div className="mt-1 font-mono text-xs font-semibold text-foreground/90">{label}</div>
-      <div className="mt-0.5 text-[11px] text-muted-foreground">{detail}</div>
+      <div className="mt-0.5 text-xs text-muted-foreground">{detail}</div>
     </motion.div>
   );
 }
@@ -104,7 +104,10 @@ export function About() {
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           {/* Narrative Copy Column */}
           <div className="lg:col-span-7 space-y-6">
-            <div data-reveal className="space-y-4 text-base sm:text-lg leading-relaxed text-foreground/85">
+            <div
+              data-reveal
+              className="space-y-4 text-base sm:text-lg leading-relaxed text-foreground/85"
+            >
               {about.body.map((paragraph, i) => (
                 <p
                   key={i}
@@ -126,7 +129,9 @@ export function About() {
                   <MapPin className="h-4 w-4" />
                 </div>
                 <div>
-                  <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Location</div>
+                  <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                    Location
+                  </div>
                   <div className="mt-0.5 font-medium text-foreground text-sm">{brand.location}</div>
                 </div>
               </div>
@@ -135,7 +140,9 @@ export function About() {
                   <Target className="h-4 w-4" />
                 </div>
                 <div>
-                  <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Status</div>
+                  <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                    Status
+                  </div>
                   <div className="mt-0.5 font-medium text-lime text-sm">{brand.status}</div>
                 </div>
               </div>
@@ -185,8 +192,12 @@ export function About() {
                 {/* Bottom Signature & Live Status */}
                 <div className="relative z-10 flex items-end justify-between pt-4 border-t border-border/40">
                   <div>
-                    <div className="font-mono text-xs uppercase tracking-widest text-lime">Signature</div>
-                    <div className="mt-1 font-display text-2xl font-bold tracking-tight text-foreground">{brand.fullName}</div>
+                    <div className="font-mono text-xs uppercase tracking-widest text-lime">
+                      Signature
+                    </div>
+                    <div className="mt-1 font-display text-2xl font-bold tracking-tight text-foreground">
+                      {brand.fullName}
+                    </div>
                   </div>
                   <div className="inline-flex items-center gap-2 rounded-xl border border-lime/30 bg-background/90 px-3 py-1.5 font-mono text-xs">
                     <span className="relative flex h-2 w-2">
@@ -219,9 +230,9 @@ export function About() {
                     </span>
                     <span className="font-mono text-xs text-muted-foreground">{edu.period}</span>
                   </div>
-                  <h4 className="mt-3 font-display text-xl font-bold text-foreground">
+                  <h3 className="mt-3 font-display text-xl font-bold text-foreground">
                     {edu.degree}
-                  </h4>
+                  </h3>
                   <p className="mt-1 text-sm text-muted-foreground">{edu.institution}</p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between">

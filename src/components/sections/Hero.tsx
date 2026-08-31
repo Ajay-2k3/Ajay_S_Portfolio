@@ -15,14 +15,14 @@ import { StatusPill } from "@/components/ui/StatusPill";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { Container } from "@/components/ui/Container";
 import { useMagnetic } from "@/lib/motion/useMagnetic";
-import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
 const roles = [
   {
     title: "Software Engineer",
     shortLabel: "Software",
-    subtitle: "Building scalable full-stack & backend apps using React, Next.js, Node.js, FastAPI, PostgreSQL & Redis.",
+    subtitle:
+      "Building scalable full-stack & backend apps using React, Next.js, Node.js, FastAPI, PostgreSQL & Redis.",
     badge: "Full-Stack & Backend",
     skills: ["React.js", "Next.js", "Node.js", "FastAPI", "PostgreSQL", "Redis"],
     command: "npx ajay-dev inspect --software-engineer",
@@ -31,7 +31,8 @@ const roles = [
   {
     title: "Backend Developer",
     shortLabel: "Backend",
-    subtitle: "Experienced in Node.js, Express.js, PostgreSQL, Supabase, JWT authentication, RBAC & React Native integration.",
+    subtitle:
+      "Experienced in Node.js, Express.js, PostgreSQL, Supabase, JWT authentication, RBAC & React Native integration.",
     badge: "Backend & Databases",
     skills: ["Node.js", "Express.js", "PostgreSQL", "Supabase", "JWT/RBAC", "React Native"],
     command: "npx ajay-dev inspect --backend",
@@ -40,7 +41,8 @@ const roles = [
   {
     title: "Real-Time AI Engineer",
     shortLabel: "Real-Time",
-    subtitle: "Processed real-time WebSocket market data streams exceeding 1,000 data points/sec with Python FastAPI ML inference.",
+    subtitle:
+      "Processed real-time WebSocket market data streams exceeding 1,000 data points/sec with Python FastAPI ML inference.",
     badge: "Real-Time & AI",
     skills: ["Python", "FastAPI", "Socket.IO", "Redis", "TensorFlow", "PyTorch"],
     command: "npx ajay-dev stream --stock-ai",
@@ -49,7 +51,8 @@ const roles = [
   {
     title: "E-Commerce Architect",
     shortLabel: "E-Commerce",
-    subtitle: "Built Flowerly platform with 35+ responsive pages across 4 user roles (Customer, Vendor, Admin, Delivery) & Razorpay.",
+    subtitle:
+      "Built Flowerly platform with 35+ responsive pages across 4 user roles (Customer, Vendor, Admin, Delivery) & Razorpay.",
     badge: "Multi-Tenant E-Commerce",
     skills: ["Next.js", "Prisma", "Supabase", "Razorpay", "Socket.IO", "Tailwind CSS"],
     command: "npx ajay-dev inspect --flowerly",
@@ -130,7 +133,7 @@ export function Hero() {
               className="mb-3 sm:mb-5 flex flex-wrap items-center gap-2 sm:gap-3"
             >
               <StatusPill label={brand.status} />
-              <span className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-muted-foreground border border-border/40 rounded-full px-2.5 py-0.5 sm:px-3 sm:py-1 bg-elevated/40">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-elevated/40 px-2.5 py-0.5 font-mono text-xs text-muted-foreground sm:px-3 sm:py-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 {brand.location}
               </span>
@@ -187,33 +190,41 @@ export function Hero() {
 
             {/* Role Switcher Controls & Badges (Fully Responsive & Cleanly Wrapped on Mobile) */}
             <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <span className="text-[11px] sm:text-xs font-mono text-muted-foreground mr-1 shrink-0">
+              <span className="mr-1 shrink-0 font-mono text-xs text-muted-foreground">
                 Switch Role:
               </span>
               {roles.map((r, idx) => (
-                <button
+                <CTAButton
                   key={r.title}
+                  type="button"
+                  variant="chip"
+                  size="sm"
+                  aria-pressed={idx === roleIndex}
                   onClick={() => {
                     setRoleIndex(idx);
                     setIsPlaying(false);
                   }}
-                  className={cn(
-                    "px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded-full border transition-all duration-300",
-                    idx === roleIndex
-                      ? "bg-lime text-lime-foreground border-lime font-bold shadow-glow-sm scale-105"
-                      : "bg-surface/60 border-border/60 text-muted-foreground hover:text-foreground hover:border-border"
-                  )}
+                  className="font-mono"
                 >
                   {r.shortLabel}
-                </button>
+                </CTAButton>
               ))}
-              <button
+              <CTAButton
+                type="button"
+                variant="icon"
+                size="icon"
                 onClick={() => setIsPlaying(!isPlaying)}
-                title={isPlaying ? "Pause auto-switch" : "Play auto-switch"}
-                className="ml-1 p-1 sm:p-1.5 rounded-full border border-border/60 text-muted-foreground hover:text-lime transition-colors"
+                aria-label={
+                  isPlaying ? "Pause automatic role switching" : "Resume automatic role switching"
+                }
+                className="ml-1"
               >
-                {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
-              </button>
+                {isPlaying ? (
+                  <Pause aria-hidden="true" className="h-3 w-3" />
+                ) : (
+                  <Play aria-hidden="true" className="h-3 w-3" />
+                )}
+              </CTAButton>
             </div>
 
             {/* Adaptive Skill Chips (Locked height container) */}
@@ -235,7 +246,7 @@ export function Hero() {
                   {currentRole.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs font-mono rounded-md bg-elevated/70 border border-lime/20 text-foreground/90 flex items-center gap-1 sm:gap-1.5 shadow-sm"
+                      className="flex items-center gap-1 rounded-md border border-lime/20 bg-elevated/70 px-2 py-0.5 font-mono text-xs text-foreground/90 shadow-sm sm:gap-1.5 sm:px-2.5 sm:py-1"
                     >
                       <span className="h-1 w-1 rounded-full bg-lime" />
                       {skill}
@@ -253,12 +264,25 @@ export function Hero() {
               className="mt-5 sm:mt-8 flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4"
             >
               <div ref={hireBtnRef} className="w-full xs:w-auto">
-                <CTAButton as="a" href="#contact" variant="lime" size="lg" className="w-full xs:w-auto justify-center group shadow-glow">
-                  Hire Me <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <CTAButton
+                  as="a"
+                  href="#contact"
+                  variant="lime"
+                  size="lg"
+                  className="w-full xs:w-auto justify-center group shadow-glow"
+                >
+                  Hire Me{" "}
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </CTAButton>
               </div>
               <div ref={workBtnRef} className="w-full xs:w-auto">
-                <CTAButton as="a" href="#projects" variant="outline" size="lg" className="w-full xs:w-auto justify-center">
+                <CTAButton
+                  as="a"
+                  href="#projects"
+                  variant="outline"
+                  size="lg"
+                  className="w-full xs:w-auto justify-center"
+                >
                   View Work
                 </CTAButton>
               </div>
@@ -280,11 +304,11 @@ export function Hero() {
                   <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-amber-500/80" />
                   <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-500/80" />
                 </div>
-                <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-[11px] sm:text-xs text-muted-foreground">
+                <div className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground sm:gap-2">
                   <Terminal className="h-3.5 w-3.5 text-lime" />
                   <span>ajay.config.ts</span>
                 </div>
-                <span className="px-1.5 py-0.5 sm:px-2 text-[9px] sm:text-[10px] font-mono rounded bg-lime/10 text-lime border border-lime/20 truncate max-w-[110px] sm:max-w-none">
+                <span className="max-w-[110px] truncate rounded border border-lime/20 bg-lime/10 px-1.5 py-0.5 font-mono text-xs text-lime sm:max-w-none sm:px-2">
                   {currentRole.badge}
                 </span>
               </div>
@@ -293,17 +317,26 @@ export function Hero() {
               <div className="p-4 sm:p-5 font-mono text-xs space-y-3 sm:space-y-4">
                 {/* Interactive CLI Command Copy Row */}
                 <div className="flex items-center justify-between rounded-lg bg-background/80 px-2.5 py-1.5 sm:px-3 sm:py-2 border border-border/50">
-                  <div className="flex items-center gap-2 text-foreground/90 overflow-x-auto no-scrollbar text-[11px] sm:text-xs">
+                  <div className="no-scrollbar flex items-center gap-2 overflow-x-auto text-xs text-foreground/90">
                     <span className="text-lime">$</span>
-                    <span className="truncate max-w-[220px] xs:max-w-none">{currentRole.command}</span>
+                    <span className="truncate max-w-[220px] xs:max-w-none">
+                      {currentRole.command}
+                    </span>
                   </div>
-                  <button
+                  <CTAButton
+                    type="button"
+                    variant="icon"
+                    size="icon"
                     onClick={handleCopyCommand}
-                    className="p-1 sm:p-1.5 rounded hover:bg-elevated text-muted-foreground hover:text-lime transition-colors shrink-0 ml-1.5"
-                    title="Copy command"
+                    className="ml-1.5 shrink-0"
+                    aria-label={copied ? "Command copied" : "Copy command"}
                   >
-                    {copied ? <Check className="h-3.5 w-3.5 text-lime" /> : <Copy className="h-3.5 w-3.5" />}
-                  </button>
+                    {copied ? (
+                      <Check aria-hidden="true" className="h-3.5 w-3.5 text-lime" />
+                    ) : (
+                      <Copy aria-hidden="true" className="h-3.5 w-3.5" />
+                    )}
+                  </CTAButton>
                 </div>
 
                 {/* Animated Code Snippet Box (Fixed Height Box) */}
@@ -315,11 +348,9 @@ export function Hero() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.3 }}
-                      className="text-muted-foreground overflow-x-auto text-[10px] sm:text-[11px] leading-relaxed no-scrollbar w-full"
+                      className="no-scrollbar w-full overflow-x-auto text-xs leading-relaxed text-muted-foreground"
                     >
-                      <code className="text-emerald-400 font-mono">
-                        {currentRole.snippet}
-                      </code>
+                      <code className="text-emerald-400 font-mono">{currentRole.snippet}</code>
                     </motion.pre>
                   </AnimatePresence>
                 </div>
@@ -328,15 +359,15 @@ export function Hero() {
                 <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-2 border-t border-border/30 text-center">
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
                     <div className="text-lime font-bold text-xs sm:text-sm">100+</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">LeetCode</div>
+                    <div className="text-xs text-muted-foreground">LeetCode</div>
                   </div>
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
                     <div className="text-lime font-bold text-xs sm:text-sm">1,000+</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">Data Pts/s</div>
+                    <div className="text-xs text-muted-foreground">Data Pts/s</div>
                   </div>
                   <div className="p-1.5 sm:p-2 rounded bg-elevated/40">
                     <div className="text-lime font-bold text-xs sm:text-sm">35+</div>
-                    <div className="text-[9px] sm:text-[10px] text-muted-foreground">Pages</div>
+                    <div className="text-xs text-muted-foreground">Pages</div>
                   </div>
                 </div>
               </div>

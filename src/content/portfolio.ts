@@ -8,7 +8,8 @@ export const brand = {
   name: "AJAY.DEV",
   fullName: "Ajay S",
   role: "Software Engineer",
-  tagline: "Building scalable full-stack, backend, and real-time applications using React, Next.js, Node.js, FastAPI, PostgreSQL & Redis.",
+  tagline:
+    "Building scalable full-stack, backend, and real-time applications using React, Next.js, Node.js, FastAPI, PostgreSQL & Redis.",
   location: "Chennai, Tamil Nadu, India",
   email: "ajaysettu1@gmail.com",
   livePortfolio: "https://ajay-s-portfolio-5leb.vercel.app/",
@@ -98,7 +99,7 @@ export const metrics = [
     detail: "Arrays, Trees, Graphs, DP & Algorithmic Discipline",
   },
   {
-    label: "Stream Throughput",
+    label: "Stream throughput",
     value: 1000,
     suffix: "+ pts/s",
     detail: "Real-Time WebSocket AI Stock Prediction Feed",
@@ -179,7 +180,16 @@ export const projects = [
     image: "/stock_predition.png",
     summary:
       "A real-time AI-powered stock prediction and monitoring platform featuring a Python FastAPI machine learning inference microservice processing real-time WebSocket market data streams exceeding 1,000 data points per second.",
-    tags: ["React", "Node.js", "TypeScript", "Python", "FastAPI", "PostgreSQL", "Redis", "Socket.IO"],
+    tags: [
+      "React",
+      "Node.js",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "Socket.IO",
+    ],
     metric: "1,000+ pts/sec · 15% Latency Cut",
     year: "MCA Final Year Project",
     details: {
@@ -207,7 +217,16 @@ export const projects = [
     image: "/flowerly.png",
     summary:
       "A scalable multi-tenant e-commerce platform featuring over 35 responsive application pages, 4 distinct user roles (Customer, Vendor, Admin, Delivery), Razorpay payment gateway, and Socket.IO real-time order tracking.",
-    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "Supabase", "Razorpay", "Socket.IO"],
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Prisma",
+      "Supabase",
+      "Razorpay",
+      "Socket.IO",
+    ],
     metric: "35+ Pages · 4 Roles",
     year: "Freelance Project",
     details: {
@@ -285,7 +304,18 @@ export const architectureLayers = [
     label: "Databases & Cloud",
     detail:
       "PostgreSQL and Supabase with Prisma ORM, MongoDB, MySQL, Redis caching, and deployment on AWS, Docker, Vercel & Render.",
-    items: ["PostgreSQL", "Supabase", "MongoDB", "MySQL", "Prisma", "Redis", "AWS", "Docker", "Vercel", "Render"],
+    items: [
+      "PostgreSQL",
+      "Supabase",
+      "MongoDB",
+      "MySQL",
+      "Prisma",
+      "Redis",
+      "AWS",
+      "Docker",
+      "Vercel",
+      "Render",
+    ],
   },
 ] as const;
 
@@ -296,7 +326,16 @@ export const skills = [
   },
   {
     group: "Frontend Development",
-    items: ["React.js", "Next.js", "React Native", "HTML5", "CSS3", "Tailwind CSS", "GSAP", "Framer Motion"],
+    items: [
+      "React.js",
+      "Next.js",
+      "React Native",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "GSAP",
+      "Framer Motion",
+    ],
   },
   {
     group: "Backend Development",
@@ -356,9 +395,18 @@ export const philosophy = {
 } as const;
 
 export const achievements = [
-  { title: "100+ LeetCode Solved", detail: "DSA mastery in arrays, linked lists, stacks, queues, trees, graphs, DP & recursion" },
-  { title: "Bluewhiz Internship", detail: "Backend Node.js, PostgreSQL, Supabase, JWT/RBAC & React Native integration" },
-  { title: "JPMorgan Chase", detail: "Software Engineering Virtual Experience (Java/Apache Kafka microservices)" },
+  {
+    title: "100+ LeetCode Solved",
+    detail: "DSA mastery in arrays, linked lists, stacks, queues, trees, graphs, DP & recursion",
+  },
+  {
+    title: "Bluewhiz Internship",
+    detail: "Backend Node.js, PostgreSQL, Supabase, JWT/RBAC & React Native integration",
+  },
+  {
+    title: "JPMorgan Chase",
+    detail: "Software Engineering Virtual Experience (Java/Apache Kafka microservices)",
+  },
   { title: "Shaastra IIT Madras", detail: "Full Stack Development Workshop Certification" },
 ] as const;
 
@@ -409,4 +457,3 @@ export const blogs = [
     readTime: "6 min",
   },
 ] as const;
-

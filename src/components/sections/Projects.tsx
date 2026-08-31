@@ -42,17 +42,17 @@ export function Projects() {
           Filter Stack:
         </span>
         {allTags.map((tag) => (
-          <button
+          <CTAButton
             key={tag}
+            type="button"
+            variant="chip"
+            size="sm"
+            aria-pressed={selectedTag === tag}
             onClick={() => setSelectedTag(tag)}
-            className={`rounded-full px-3.5 py-1.5 font-mono text-xs font-medium transition-all duration-300 ${
-              selectedTag === tag
-                ? "bg-lime text-lime-foreground font-bold shadow-glow-sm scale-105"
-                : "bg-surface border border-border/60 text-muted-foreground hover:text-foreground hover:border-lime/30"
-            }`}
+            className="font-mono"
           >
             {tag}
-          </button>
+          </CTAButton>
         ))}
       </div>
 
@@ -81,13 +81,11 @@ export function Projects() {
                         <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80" />
                         <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80" />
                         <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80" />
-                        <span className="ml-2 font-mono text-[10px] text-muted-foreground">
+                        <span className="ml-2 min-w-0 truncate font-mono text-xs text-muted-foreground">
                           ajay.dev/{p.slug}
                         </span>
                       </div>
-                      <span className="font-mono text-[10px] text-lime font-semibold">
-                        {p.year}
-                      </span>
+                      <span className="font-mono text-xs text-lime font-semibold">{p.year}</span>
                     </div>
 
                     <div className="relative h-full w-full overflow-hidden group">
@@ -101,7 +99,7 @@ export function Projects() {
                         ) : null}
                         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
                         <div className="absolute bottom-4 left-4 z-10">
-                          <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-background/90 backdrop-blur-md px-3 py-1 font-mono text-[11px] font-semibold text-lime shadow-glow-sm">
+                          <div className="inline-flex items-center gap-1.5 rounded-full border border-lime/30 bg-background/90 backdrop-blur-md px-3 py-1 font-mono text-xs font-semibold text-lime shadow-glow-sm">
                             <Sparkles className="h-3 w-3" /> {p.metric}
                           </div>
                         </div>
@@ -157,13 +155,16 @@ export function Projects() {
               className="relative z-10 w-full max-w-2xl overflow-hidden rounded-3xl border border-lime/30 bg-surface p-6 sm:p-8 shadow-card"
             >
               {/* Close Button */}
-              <button
+              <CTAButton
+                type="button"
+                variant="icon"
+                size="icon"
                 onClick={() => setActiveProject(null)}
-                className="absolute top-6 right-6 inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-elevated hover:border-lime/40 text-muted-foreground hover:text-foreground transition-colors"
+                className="absolute top-6 right-6"
                 aria-label="Close modal"
               >
-                <X className="h-4 w-4" />
-              </button>
+                <X aria-hidden="true" className="h-4 w-4" />
+              </CTAButton>
 
               <div className="space-y-6 max-h-[80vh] overflow-y-auto pr-2">
                 <div>
@@ -187,7 +188,9 @@ export function Projects() {
 
                 <div className="rounded-2xl border border-lime/20 bg-lime/5 p-4 flex items-center justify-between">
                   <span className="font-mono text-xs text-muted-foreground">Highlight Metric</span>
-                  <span className="font-mono text-sm font-bold text-lime">{activeProject.metric}</span>
+                  <span className="font-mono text-sm font-bold text-lime">
+                    {activeProject.metric}
+                  </span>
                 </div>
 
                 <p className="text-muted-foreground leading-relaxed text-sm">
@@ -197,17 +200,23 @@ export function Projects() {
                 {"details" in activeProject && activeProject.details && (
                   <div className="space-y-4 text-xs sm:text-sm">
                     <div className="rounded-xl bg-elevated/60 p-4 border border-border/60">
-                      <div className="font-mono text-xs font-semibold text-lime uppercase tracking-wider mb-1">Problem</div>
+                      <div className="font-mono text-xs font-semibold text-lime uppercase tracking-wider mb-1">
+                        Problem
+                      </div>
                       <p className="text-foreground/90">{activeProject.details.problem}</p>
                     </div>
 
                     <div className="rounded-xl bg-elevated/60 p-4 border border-border/60">
-                      <div className="font-mono text-xs font-semibold text-lime uppercase tracking-wider mb-1">Solution</div>
+                      <div className="font-mono text-xs font-semibold text-lime uppercase tracking-wider mb-1">
+                        Solution
+                      </div>
                       <p className="text-foreground/90">{activeProject.details.solution}</p>
                     </div>
 
                     <div>
-                      <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-2">Key Features</div>
+                      <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                        Key Features
+                      </div>
                       <ul className="space-y-1.5 text-foreground/85">
                         {activeProject.details.features.map((feat, idx) => (
                           <li key={idx} className="flex items-start gap-2">
@@ -219,7 +228,9 @@ export function Projects() {
                     </div>
 
                     <div>
-                      <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-2">Measurable Results</div>
+                      <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-2">
+                        Measurable Results
+                      </div>
                       <ul className="space-y-1.5 text-foreground/85">
                         {activeProject.details.results.map((res, idx) => (
                           <li key={idx} className="flex items-start gap-2">
@@ -249,7 +260,13 @@ export function Projects() {
                   <CTAButton onClick={() => setActiveProject(null)} variant="outline" size="sm">
                     Close Preview
                   </CTAButton>
-                  <CTAButton as="a" href="#contact" variant="lime" size="sm" onClick={() => setActiveProject(null)}>
+                  <CTAButton
+                    as="a"
+                    href="#contact"
+                    variant="lime"
+                    size="sm"
+                    onClick={() => setActiveProject(null)}
+                  >
                     Discuss Project Scope <ExternalLink className="h-3.5 w-3.5" />
                   </CTAButton>
                 </div>

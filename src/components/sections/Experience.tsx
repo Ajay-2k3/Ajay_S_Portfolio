@@ -59,8 +59,8 @@ export function Experience() {
                       <Calendar className="h-3 w-3" />
                       {e.period}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[11px] text-muted-foreground mt-1">
-                      <MapPin className="h-3 w-3 text-lime/70" />
+                    <span className="mt-1 inline-flex items-center gap-1 text-xs text-muted-foreground">
+                      <MapPin aria-hidden="true" className="h-3 w-3 text-lime/70" />
                       {e.location}
                     </span>
                   </div>
@@ -78,7 +78,9 @@ export function Experience() {
                       className="flex items-start gap-3 text-sm sm:text-base text-foreground/85 leading-relaxed group/bullet"
                     >
                       <span className="mt-2 h-1.5 w-1.5 rounded-full bg-lime shrink-0 group-hover/bullet:scale-150 transition-transform duration-200" />
-                      <span className="group-hover/bullet:text-foreground transition-colors">{bullet}</span>
+                      <span className="group-hover/bullet:text-foreground transition-colors">
+                        {bullet}
+                      </span>
                     </motion.li>
                   ))}
                 </ul>

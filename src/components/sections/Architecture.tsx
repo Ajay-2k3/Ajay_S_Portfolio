@@ -6,11 +6,11 @@ import { architectureLayers } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { Cpu, Layers } from "lucide-react";
+import { CTAButton } from "@/components/ui/CTAButton";
 
 export function Architecture() {
   const [active, setActive] = useState<string>(architectureLayers[0].id);
-  const layer =
-    architectureLayers.find((l) => l.id === active) ?? architectureLayers[0];
+  const layer = architectureLayers.find((l) => l.id === active) ?? architectureLayers[0];
 
   return (
     <Section id="architecture" className="bg-surface/40 relative py-16 lg:py-24">
@@ -34,15 +34,13 @@ export function Architecture() {
           </div>
           <div className="space-y-3">
             {architectureLayers.map((l) => (
-              <button
+              <CTAButton
                 key={l.id}
+                type="button"
+                variant="panel"
+                size="panel"
                 onClick={() => setActive(l.id)}
-                className={cn(
-                  "relative w-full rounded-2xl border p-5 text-left transition-all duration-300 group",
-                  active === l.id
-                    ? "border-lime/40 bg-lime/10 shadow-glow-sm"
-                    : "border-border/60 bg-elevated/40 hover:border-lime/30 hover:bg-elevated/80"
-                )}
+                className={cn("group relative", active === l.id && "shadow-glow-sm")}
                 aria-pressed={active === l.id}
               >
                 <div className="flex items-center justify-between">
@@ -60,7 +58,7 @@ export function Architecture() {
                     transition={{ type: "spring", stiffness: 350, damping: 25 }}
                   />
                 )}
-              </button>
+              </CTAButton>
             ))}
           </div>
         </motion.div>
