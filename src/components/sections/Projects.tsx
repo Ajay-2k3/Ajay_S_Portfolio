@@ -146,7 +146,7 @@ export function Projects() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative z-10 w-full max-w-2xl overflow-hidden rounded-3xl border border-lime/30 bg-surface p-6 sm:p-8 shadow-card"
+              className="relative z-10 flex max-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border border-lime/30 bg-surface p-6 shadow-card sm:max-h-[calc(100dvh-3rem)] sm:p-8 md:max-h-[calc(100dvh-5rem)]"
             >
               {/* Close Button */}
               <CTAButton
@@ -160,7 +160,10 @@ export function Projects() {
                 <X aria-hidden="true" className="h-4 w-4" />
               </CTAButton>
 
-              <div className="space-y-6 max-h-[80vh] overflow-y-auto pr-2">
+              <div
+                data-lenis-prevent
+                className="min-h-0 flex-1 space-y-6 overflow-y-auto overscroll-contain pr-2"
+              >
                 <div>
                   <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-lime">
                     <Sparkles className="h-3.5 w-3.5" /> Case Study · {activeProject.year}
